@@ -20,6 +20,13 @@
     {
       "target" : {
         "containerPath" : "container:Packages\/AppModules",
+        "identifier" : "SharedDomainTests",
+        "name" : "SharedDomainTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Packages\/AppModules",
         "identifier" : "CoreTests",
         "name" : "CoreTests"
       }
