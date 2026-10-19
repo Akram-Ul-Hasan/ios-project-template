@@ -17,4 +17,5 @@ public enum AppSize {
     public static let borderWidth: CGFloat = 1
     public static let focusedBorderWidth: CGFloat = 2
     public static let badgeMinSize: CGFloat = 18
+    public static let popupMaxWidth: CGFloat = 360
 }
