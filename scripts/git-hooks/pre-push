@@ -1,0 +1,15 @@
+#!/bin/sh
+# Block pushes to protected branches and make sure the package still builds (§12).
+
+while read -r local_ref local_sha remote_ref remote_sha; do
+  case "$remote_ref" in
+    refs/heads/main|refs/heads/dev)
+      echo "✖ Pushing to '${remote_ref#refs/heads/}' is blocked. Push your branch and open an MR into dev."
+      exit 1 ;;
+  esac
+done
+
+root=$(git rev-parse --show-toplevel)
+[ -f "$root/Packages/AppModules/Package.swift" ] || exit 0
+echo "▸ Building AppModules…"
+"$root/scripts/build_package.sh" || { echo "✖ AppModules does not build"; exit 1; }
