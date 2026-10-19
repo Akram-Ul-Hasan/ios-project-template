@@ -1,0 +1,26 @@
+# macOS
+.DS_Store
+
+# Xcode
+xcuserdata/
+*.xcuserstate
+*.xcscmblueprint
+*.xccheckout
+DerivedData/
+build/
+*.xcresult
+
+# Swift Package Manager
+.build/
+.swiftpm/
+Packages/*/.swiftpm/
+
+# Secrets (never commit)
+*.secrets.xcconfig
+*.p8
+*.p12
+*.mobileprovision
+*.cer
+
+# CI artifacts
+coverage/
