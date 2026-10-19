@@ -1,5 +1,5 @@
 /// Typed backend error codes. Unknown codes decode to `.unknown(raw)` so a new code shows the generic message.
-public enum BackendErrorCode: Equatable, Sendable {
+public enum BackendErrorCode: UnknownCase, Equatable {
     case outOfStock
     case couponExpired
     case unknown(String)
@@ -18,11 +18,5 @@ public enum BackendErrorCode: Equatable, Sendable {
         case .couponExpired: "COUPON_EXPIRED"
         case .unknown(let raw): raw
         }
-    }
-}
-
-extension BackendErrorCode: Decodable {
-    public init(from decoder: any Decoder) throws {
-        self.init(rawValue: try decoder.singleValueContainer().decode(String.self))
     }
 }
