@@ -12,7 +12,8 @@ import PackageDescription
 let package = Package(
     name: "AppModules",
     defaultLocalization: "en",
-    platforms: [.iOS(.v17)],
+    // macOS is only for host tooling (SourceKit-LSP indexing, `swift build`). The app ships on iOS.
+    platforms: [.iOS(.v17), .macOS(.v14)],
     products: [
         .library(
             name: "AppModules",
