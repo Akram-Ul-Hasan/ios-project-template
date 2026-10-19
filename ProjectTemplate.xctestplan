@@ -65,6 +65,13 @@
         "identifier" : "AuthPresentationTests",
         "name" : "AuthPresentationTests"
       }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Packages\/AppModules",
+        "identifier" : "CatalogDomainTests",
+        "name" : "CatalogDomainTests"
+      }
     }
   ],
   "version" : 1
