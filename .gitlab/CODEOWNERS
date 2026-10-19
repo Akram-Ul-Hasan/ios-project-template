@@ -1,0 +1,15 @@
+# Changes here need a senior reviewer (enforced on GitLab Premium, informational on Free).
+# Replace the placeholder group with the real GitLab group or usernames.
+
+[Architecture]
+/Packages/AppModules/Package.swift              @technonext/ios-seniors
+/scripts/check_target_graph.sh                  @technonext/ios-seniors
+
+[Security]
+/Packages/AppModules/Sources/Core/Security/     @technonext/ios-seniors
+/Packages/AppModules/Sources/Core/Network/      @technonext/ios-seniors
+/App/Resources/*.entitlements                   @technonext/ios-seniors
+
+[CI]
+/.gitlab-ci.yml                                 @technonext/ios-seniors
+/scripts/git-hooks/                             @technonext/ios-seniors
