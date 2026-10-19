@@ -12,12 +12,14 @@ struct MainTabView: View {
             ForEach(AppTab.allCases) { tab in
                 NavigationStack(path: path(for: tab)) {
                     TabRootPlaceholder(tab: tab, router: router)
+                        .navigationDestination(for: Route.self) { RouteView(route: $0, container: container) }
                 }
                 .tabItem { Label(tab.title, systemImage: tab.systemImage) }
                 .tag(tab)
             }
         }
         .tint(AppColors.brandPrimary)
+        .appSheet(item: $router.sheet) { SheetRouteView(sheet: $0, router: router) }
     }
 
     /// SwiftUI calls the setter even when the current tab is tapped again, which `select` turns into pop-to-root.
