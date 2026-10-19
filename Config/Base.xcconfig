@@ -16,3 +16,6 @@ SWIFT_VERSION = 6.0
 // Partial Info.plist merged into the generated one: carries APP_ENV / BASE_URL for Env.swift.
 GENERATE_INFOPLIST_FILE = YES
 INFOPLIST_FILE = App/Resources/Info.plist
+
+// Associated domains (universal links), push and other capabilities.
+CODE_SIGN_ENTITLEMENTS = App/Resources/ProjectTemplate.entitlements

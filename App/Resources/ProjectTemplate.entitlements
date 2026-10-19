@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- Universal links. The host is per flavor (ASSOCIATED_DOMAIN in Config/*.xcconfig) and must serve
+	     /.well-known/apple-app-site-association; hosts must also be in DeepLinkConstants.universalLinkHosts. -->
+	<key>com.apple.developer.associated-domains</key>
+	<array>
+		<string>applinks:$(ASSOCIATED_DOMAIN)</string>
+	</array>
+</dict>
+</plist>

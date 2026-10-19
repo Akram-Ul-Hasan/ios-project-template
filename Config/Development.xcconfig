@@ -5,4 +5,5 @@ APP_DISPLAY_NAME = PT Dev
 BUNDLE_ID_SUFFIX = .dev
 // `/$()/` stops xcconfig from treating `//` as a comment.
 BASE_URL = https:/$()/api-dev.example.com
+ASSOCIATED_DOMAIN = dev.example.com
 SWIFT_ACTIVE_COMPILATION_CONDITIONS = $(inherited) DEVELOPMENT
