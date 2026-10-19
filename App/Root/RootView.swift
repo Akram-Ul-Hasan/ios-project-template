@@ -16,10 +16,20 @@ struct RootView: View {
     let container: AppContainer
     @State private var phase: RootPhase = .launching
     @State private var isLoggingOut = false
+    @Environment(\.scenePhase) private var scenePhase
 
     var body: some View {
         content
+            .sessionLock(container.sessionManager, isActive: phase == .signedIn)
+            .privacyScreen()
             .animation(AppAnimation.standard, value: phase)
+            .onChange(of: scenePhase) { _, newPhase in
+                switch newPhase {
+                case .background: container.sessionManager.didEnterBackground()
+                case .active: container.sessionManager.willEnterForeground()
+                default: break
+                }
+            }
             .task { await launch() }
             .task { await observeSessionEvents() }
             .environment(container.networkMonitor)
