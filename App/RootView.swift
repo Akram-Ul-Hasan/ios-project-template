@@ -5,9 +5,7 @@ struct RootView: View {
     let container: AppContainer
 
     var body: some View {
-        Image(systemName: "swift")
-            .font(.largeTitle)
-            .foregroundStyle(.tint)
+        MainTabView(container: container, router: container.router)
             .task { await container.bootstrap() }
     }
 }

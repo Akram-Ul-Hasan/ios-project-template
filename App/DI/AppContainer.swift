@@ -22,6 +22,9 @@ final class AppContainer {
     let tokenRefreshBridge = TokenRefreshBridge()
     let mockData = MockDataHelper()
 
+    // Navigation
+    let router = AppRouter()
+
     // Session, feedback, app-wide UI state
     let sessionEvents = SessionEvents()
     let sessionManager: SessionManager
