@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "A1B2C3D4-0000-4000-8000-000000000001",
+      "name" : "Default",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:Packages\/AppModules",
+        "identifier" : "CoreTests",
+        "name" : "CoreTests"
+      }
+    }
+  ],
+  "version" : 1
+}

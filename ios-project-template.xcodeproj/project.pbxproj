@@ -11,6 +11,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C2FF1209308631D7001D0C99 /* AppModules */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = AppModules; path = Packages/AppModules; sourceTree = "<group>"; };
 		C2FF1200308631D7001D0C99 /* Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Base.xcconfig; sourceTree = "<group>"; };
 		C2FF1201308631D7001D0C99 /* Development.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Development.xcconfig; sourceTree = "<group>"; };
 		C2FF1202308631D7001D0C99 /* Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Staging.xcconfig; sourceTree = "<group>"; };
@@ -63,6 +64,7 @@
 		C2FF1106308631D6001D0C99 = {
 			isa = PBXGroup;
 			children = (
+				C2FF1209308631D7001D0C99 /* AppModules */,
 				C2FF1204308631D7001D0C99 /* Config */,
 				C2FF1111308631D6001D0C99 /* App */,
 				C2FF1110308631D6001D0C99 /* Products */,

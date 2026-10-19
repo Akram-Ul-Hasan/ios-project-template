@@ -26,6 +26,9 @@ let package = Package(
         .target(name: "Core", dependencies: ["SharedDomain", "Localization"]),
         // L2
         .target(name: "DesignSystem", dependencies: ["Core", "SharedDomain", "Localization"]),
+        // Tests
+        .target(name: "TestSupport", dependencies: ["Core", "SharedDomain"], path: "Tests/TestSupport"),
+        .testTarget(name: "CoreTests", dependencies: ["Core", "TestSupport"]),
     ],
     swiftLanguageModes: [.v6]
 )
