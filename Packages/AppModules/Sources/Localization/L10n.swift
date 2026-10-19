@@ -59,6 +59,7 @@ public enum L10n {
         public static var title: String { tr("login.title") }
         public static var subtitle: String { tr("login.subtitle") }
         public static var phone: String { tr("login.phone") }
+        public static var phonePlaceholder: String { tr("login.phone_placeholder") }
         public static var password: String { tr("login.password") }
         public static var submit: String { tr("login.submit") }
     }

@@ -637,6 +637,23 @@
         }
       }
     },
+    "login.phone_placeholder" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "01XXXXXXXXX"
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "০১XXXXXXXXX"
+          }
+        }
+      }
+    },
     "login.submit" : {
       "extractionState" : "manual",
       "localizations" : {
