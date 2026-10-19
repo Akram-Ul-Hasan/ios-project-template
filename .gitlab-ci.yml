@@ -23,6 +23,15 @@ default:
     - expected=$(tr -d '[:space:]' < .xcode-version); actual=$(xcodebuild -version | awk 'NR==1 {print $2}')
     - '[ "$actual" = "$expected" ] || { echo "Runner has Xcode $actual, .xcode-version wants $expected"; exit 1; }'
 
+lint:git:
+  stage: lint
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+  variables:
+    GIT_DEPTH: 0   # needs history back to the MR base
+  script:
+    - scripts/lint_git.sh "$CI_MERGE_REQUEST_SOURCE_BRANCH_NAME" "$CI_MERGE_REQUEST_TITLE" "$CI_MERGE_REQUEST_DIFF_BASE_SHA"
+
 lint:format:
   stage: lint
   script:
