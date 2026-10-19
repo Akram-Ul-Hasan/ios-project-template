@@ -1,5 +1,6 @@
 import Core
 import DesignSystem
+import Foundation
 import Localization
 import SwiftUI
 
@@ -25,6 +26,14 @@ struct RootView: View {
             .sessionLock(container.sessionManager, isActive: phase == .signedIn)
             .privacyScreen()
             .animation(AppAnimation.standard, value: phase)
+            .onChange(of: phase, initial: true) { _, newPhase in
+                container.deepLinks.update(isReady: newPhase == .signedIn, isSignedIn: newPhase == .signedIn)
+            }
+            .onOpenURL { container.deepLinks.receive(DeepLinkParser.parse($0)) }
+            .onContinueUserActivity(NSUserActivityTypeBrowsingWeb) { activity in
+                guard let url = activity.webpageURL else { return }
+                container.deepLinks.receive(DeepLinkParser.parse(url))
+            }
             .onChange(of: scenePhase) { _, newPhase in
                 switch newPhase {
                 case .background: container.sessionManager.didEnterBackground()

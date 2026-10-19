@@ -23,7 +23,8 @@ final class AppContainer {
     let mockData = MockDataHelper()
 
     // Navigation
-    let router = AppRouter()
+    let router: AppRouter
+    let deepLinks: DeepLinkHandler
 
     // Session, feedback, app-wide UI state
     let sessionEvents = SessionEvents()
@@ -44,6 +45,8 @@ final class AppContainer {
 
     init(env: Env) {
         self.env = env
+        router = AppRouter()
+        deepLinks = DeepLinkHandler(router: router)
         preferences = UserDefaultsPreferencesStore()
         keychain = KeychainService(accessGroup: nil)
         tokenStore = SecureTokenStore(keychain: keychain)
