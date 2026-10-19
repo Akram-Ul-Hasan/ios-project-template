@@ -5,7 +5,10 @@ MARKETING_VERSION = 0.1.0
 CURRENT_PROJECT_VERSION = 1
 
 PRODUCT_NAME = ProjectTemplate
-PRODUCT_BUNDLE_IDENTIFIER = com.technonext.projecttemplate
+BASE_BUNDLE_IDENTIFIER = com.technonext.projecttemplate
+// .dev / .stg suffix lets all three flavors live side by side on one device.
+PRODUCT_BUNDLE_IDENTIFIER = $(BASE_BUNDLE_IDENTIFIER)$(BUNDLE_ID_SUFFIX)
+INFOPLIST_KEY_CFBundleDisplayName = $(APP_DISPLAY_NAME)
 
 IPHONEOS_DEPLOYMENT_TARGET = 17.0
 SWIFT_VERSION = 6.0

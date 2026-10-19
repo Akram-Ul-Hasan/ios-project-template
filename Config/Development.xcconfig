@@ -1,6 +1,8 @@
 #include "Base.xcconfig"
 
 APP_ENV = development
+APP_DISPLAY_NAME = PT Dev
+BUNDLE_ID_SUFFIX = .dev
 // `/$()/` stops xcconfig from treating `//` as a comment.
 BASE_URL = https:/$()/api-dev.example.com
 SWIFT_ACTIVE_COMPILATION_CONDITIONS = $(inherited) DEVELOPMENT
