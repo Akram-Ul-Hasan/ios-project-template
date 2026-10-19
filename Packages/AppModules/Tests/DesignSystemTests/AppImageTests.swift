@@ -15,4 +15,11 @@ struct AppImageTests {
     func pixelSize(size: CGSize, scale: CGFloat, expected: Int) {
         #expect(AppImage<ImagePlaceholder>.pixelSize(for: size, scale: scale) == expected)
     }
+
+    @Test("Avatar initials use the first letters of the first two words")
+    func initials() {
+        #expect(AvatarView.initials(of: "Rahim Uddin Ahmed") == "RU")
+        #expect(AvatarView.initials(of: "  karim ") == "K")
+        #expect(AvatarView.initials(of: "") == "")
+    }
 }
