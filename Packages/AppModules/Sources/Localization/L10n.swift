@@ -31,6 +31,15 @@ public enum L10n {
         public static var subscriptionRequired: String { tr("error.subscription_required") }
     }
 
+    public enum Input {
+        public static var showPassword: String { tr("input.show_password") }
+        public static var hidePassword: String { tr("input.hide_password") }
+        public static var search: String { tr("input.search") }
+        public static var clear: String { tr("input.clear") }
+        public static var select: String { tr("input.select") }
+        public static var verificationCode: String { tr("input.verification_code") }
+    }
+
     public enum Session {
         public static var unlockReason: String { tr("session.unlock_reason") }
     }
