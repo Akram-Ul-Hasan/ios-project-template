@@ -44,6 +44,13 @@
         "identifier" : "DesignSystemTests",
         "name" : "DesignSystemTests"
       }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Packages\/AppModules",
+        "identifier" : "AuthDomainTests",
+        "name" : "AuthDomainTests"
+      }
     }
   ],
   "version" : 1
