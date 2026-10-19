@@ -30,6 +30,7 @@ let package = Package(
         .target(name: "DesignSystem", dependencies: ["Core", "SharedDomain", "Localization"]),
         // Tests
         .target(name: "TestSupport", dependencies: ["Core", "SharedDomain"], path: "Tests/TestSupport"),
+        .testTarget(name: "LocalizationTests", dependencies: ["Localization"]),
         .testTarget(name: "CoreTests", dependencies: ["Core", "TestSupport"]),
     ],
     swiftLanguageModes: [.v6]
