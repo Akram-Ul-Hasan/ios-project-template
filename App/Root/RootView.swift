@@ -8,17 +8,20 @@ enum RootPhase: Equatable {
     case onboarding
     case signedOut
     case signedIn
+    case blocked(SessionEvent)
 }
 
 /// splash → onboarding → sign in → tabs. Also the root of the environment: language, theme, images, permissions.
 struct RootView: View {
     let container: AppContainer
     @State private var phase: RootPhase = .launching
+    @State private var isLoggingOut = false
 
     var body: some View {
         content
             .animation(AppAnimation.standard, value: phase)
             .task { await launch() }
+            .task { await observeSessionEvents() }
             .environment(container.networkMonitor)
             .environment(\.imagePipeline, container.imagePipeline)
             .environment(\.permissionManager, container.permissions)
@@ -44,12 +47,33 @@ struct RootView: View {
             SignInPlaceholder(tokenStore: container.tokenStore) { phase = .signedIn }
         case .signedIn:
             MainTabView(container: container, router: container.router)
+        case .blocked(let event):
+            BlockingView(event: event) { phase = resolvedPhase() }
         }
     }
 
     private func launch() async {
         await container.bootstrap()
         phase = resolvedPhase()
+    }
+
+    /// App-level events from anywhere (token refresh, `ErrorHandling`, logout) land here.
+    private func observeSessionEvents() async {
+        for await event in container.sessionEvents.stream() {
+            switch event {
+            case .sessionExpired:
+                // Idempotent: several failing requests may report the same expiry.
+                guard phase == .signedIn, !isLoggingOut else { continue }
+                isLoggingOut = true
+                await container.sessionManager.logout()
+                isLoggingOut = false
+            case .loggedOut:
+                container.router.reset()
+                if phase == .signedIn { phase = .signedOut }
+            case .maintenance, .updateRequired:
+                phase = .blocked(event)
+            }
+        }
     }
 
     private func resolvedPhase() -> RootPhase {
