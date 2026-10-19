@@ -34,10 +34,18 @@ public final class PersistenceController: @unchecked Sendable {
         container.persistentStoreDescriptions = [description]
     }
 
-    /// Opens the store off the main thread.
+    /// Opens the store off the main thread. The store is a cache, so if it can't be opened
+    /// (corrupt file, failed migration) it is deleted and recreated instead of crashing (§6n).
     @concurrent
     public func load() async throws {
-        try loadStores()
+        do {
+            try loadStores()
+        } catch {
+            AppLogger.persistence.fault(
+                "store failed to load, recreating: \(error.localizedDescription, privacy: .public)")
+            try destroyStores()
+            try loadStores()
+        }
         container.viewContext.automaticallyMergesChangesFromParent = true
         excludeFromBackup()
     }
@@ -47,6 +55,16 @@ public final class PersistenceController: @unchecked Sendable {
         // Synchronous because shouldAddStoreAsynchronously = false.
         container.loadPersistentStores { _, error in loadError = error }
         if let loadError { throw loadError }
+    }
+
+    private func destroyStores() throws {
+        let coordinator = container.persistentStoreCoordinator
+        for store in coordinator.persistentStores {
+            try coordinator.remove(store)
+        }
+        for url in container.persistentStoreDescriptions.compactMap(\.url) where url.path() != "/dev/null" {
+            try coordinator.destroyPersistentStore(at: url, type: .sqlite)
+        }
     }
 
     private func excludeFromBackup() {

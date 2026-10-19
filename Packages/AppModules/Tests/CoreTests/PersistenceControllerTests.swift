@@ -50,4 +50,19 @@ struct PersistenceControllerTests {
         try await persistence.clearSessionData()
         #expect(try await count(in: persistence) == 0)
     }
+
+    @Test("A corrupt store file is deleted and recreated instead of crashing")
+    func recovers() async throws {
+        let directory = FileManager.default.temporaryDirectory.appending(path: "store-\(UUID().uuidString)")
+        try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
+        defer { try? FileManager.default.removeItem(at: directory) }
+        let url = directory.appending(path: "App.sqlite")
+        try Data("definitely not sqlite".utf8).write(to: url)
+
+        let persistence = PersistenceController(name: "Test", models: [Self.model()], location: .at(url))
+        try await persistence.load()
+        try await insertNotes(["a"], into: persistence)
+        #expect(try await count(in: persistence) == 1)
+        #expect(try url.resourceValues(forKeys: [.isExcludedFromBackupKey]).isExcludedFromBackup == true)
+    }
 }
