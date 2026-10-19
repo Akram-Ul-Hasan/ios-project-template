@@ -7,3 +7,6 @@ BUNDLE_ID_SUFFIX = .dev
 BASE_URL = https:/$()/api-dev.example.com
 ASSOCIATED_DOMAIN = dev.example.com
 SWIFT_ACTIVE_COMPILATION_CONDITIONS = $(inherited) DEVELOPMENT
+
+// Development runs on mock data, so it keeps the fixtures.
+EXCLUDED_SOURCE_FILE_NAMES =

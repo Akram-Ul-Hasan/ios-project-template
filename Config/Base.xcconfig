@@ -19,3 +19,6 @@ INFOPLIST_FILE = App/Resources/Info.plist
 
 // Associated domains (universal links), push and other capabilities.
 CODE_SIGN_ENTITLEMENTS = App/Resources/ProjectTemplate.entitlements
+
+// Mock fixtures (App/Resources/Mock/**/*.mock.json) never ship: only Development opts back in (§5).
+EXCLUDED_SOURCE_FILE_NAMES = *.mock.json

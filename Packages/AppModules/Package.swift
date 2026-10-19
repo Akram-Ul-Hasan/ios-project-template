@@ -43,7 +43,7 @@ let package = Package(
         .testTarget(name: "DesignSystemTests", dependencies: ["DesignSystem", "TestSupport"]),
         .testTarget(name: "AuthDomainTests", dependencies: ["AuthDomain", "TestSupport"]),
         .testTarget(name: "AuthDataTests", dependencies: ["AuthData", "TestSupport"]),
-        .testTarget(name: "CoreTests", dependencies: ["Core", "TestSupport"], resources: [.copy("Resources/Mock")]),
+        .testTarget(name: "CoreTests", dependencies: ["Core", "TestSupport"], resources: [.process("Resources/Mock")]),
     ],
     swiftLanguageModes: [.v6]
 )
