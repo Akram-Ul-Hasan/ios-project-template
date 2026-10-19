@@ -68,7 +68,7 @@ public actor ImagePipeline {
     public func prefetch(_ urls: [URL]) {
         for url in urls where prefetches[url] == nil {
             prefetches[url] = Task { [disk, loader] in
-                defer { Task { await self.finishPrefetch(url) } }
+                defer { self.finishPrefetch(url) }
                 guard await !disk.contains(url), !Task.isCancelled else { return }
                 if let data = try? await loader.data(from: url), !Task.isCancelled {
                     await disk.store(data, for: url)
