@@ -71,6 +71,14 @@ struct ResponseErrorTests {
         #expect(mismatch.responseError == .invalidResponse(detail: "expected Int at [0].stock"))
     }
 
+    @Test("Mapping errors become invalidResponse")
+    func mapping() {
+        #expect(
+            ResponseError.from(MappingError.invalidValue("product.price", "negative"))
+                == .invalidResponse(detail: "product.price: negative"))
+        #expect(ResponseError.from(MappingError.missingField("user.id")) == .invalidResponse(detail: "missing user.id"))
+    }
+
     @Test("Unknown backend codes are kept, not dropped")
     func unknownCode() throws {
         let body = try JSONDecoder().decode(BackendError.self, from: Data(#"{"code":"NEW_THING"}"#.utf8))

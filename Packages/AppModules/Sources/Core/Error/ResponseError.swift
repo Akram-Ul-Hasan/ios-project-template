@@ -31,6 +31,7 @@ extension ResponseError {
         case is CancellationError: .cancelled
         case let error as URLError: from(error)
         case let error as DecodingError: .invalidResponse(detail: describe(error))
+        case let error as MappingError: .invalidResponse(detail: error.detail)
         default: .unknown
         }
     }
