@@ -18,4 +18,6 @@ public enum AppSize {
     public static let focusedBorderWidth: CGFloat = 2
     public static let badgeMinSize: CGFloat = 18
     public static let popupMaxWidth: CGFloat = 360
+    /// Narrowest grid cell; `.adaptive` fits 2 columns on iPhone, 4–6 on iPad.
+    public static let gridItemMinWidth: CGFloat = 160
 }

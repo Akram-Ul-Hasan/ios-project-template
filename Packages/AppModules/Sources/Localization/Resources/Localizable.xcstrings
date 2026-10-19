@@ -501,6 +501,23 @@
         }
       }
     },
+    "pagination.load_more_failed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Couldn't load more. Tap to retry."
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "আরও লোড করা যায়নি। আবার চেষ্টা করতে ট্যাপ করুন।"
+          }
+        }
+      }
+    },
     "session.unlock_reason" : {
       "extractionState" : "manual",
       "localizations" : {

@@ -40,6 +40,10 @@ public enum L10n {
         public static var verificationCode: String { tr("input.verification_code") }
     }
 
+    public enum Pagination {
+        public static var loadMoreFailed: String { tr("pagination.load_more_failed") }
+    }
+
     public enum Session {
         public static var unlockReason: String { tr("session.unlock_reason") }
     }

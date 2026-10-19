@@ -85,18 +85,6 @@ extension ViewStateContainer where Loading == LoadingView {
     }
 }
 
-extension View {
-    /// `.refreshable` only when there is something to refresh.
-    @ViewBuilder
-    fileprivate func refreshable(action: (@MainActor () async -> Void)?) -> some View {
-        if let action {
-            refreshable { await action() }
-        } else {
-            self
-        }
-    }
-}
-
 #Preview("States") {
     TabView {
         ViewStateContainer(state: ViewState<[String]>.loading, onRetry: {}) { _ in EmptyView() }
