@@ -1,0 +1,39 @@
+# Runs on merge requests, dev and main. Needs a self-hosted macOS runner tagged `macos`
+# with the Xcode version from .xcode-version (GitLab SaaS macOS runners are a paid tier).
+
+stages:
+  - lint
+  - build
+  - test
+
+workflow:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH == "dev" || $CI_COMMIT_BRANCH == "main"
+    - if: $CI_COMMIT_TAG
+
+variables:
+  IOS_SIMULATOR: "iPhone 17"
+  DERIVED_DATA: "$CI_PROJECT_DIR/.build/DerivedData"
+
+default:
+  tags: [macos]
+  interruptible: true
+  before_script:
+    - expected=$(tr -d '[:space:]' < .xcode-version); actual=$(xcodebuild -version | awk 'NR==1 {print $2}')
+    - '[ "$actual" = "$expected" ] || { echo "Runner has Xcode $actual, .xcode-version wants $expected"; exit 1; }'
+
+lint:format:
+  stage: lint
+  script:
+    - swift format lint --strict --recursive App Packages/AppModules
+
+lint:target-graph:
+  stage: lint
+  script:
+    - scripts/check_target_graph.sh
+
+lint:banned-api:
+  stage: lint
+  script:
+    - scripts/banned_api_check.sh
