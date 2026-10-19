@@ -37,3 +37,16 @@ lint:banned-api:
   stage: lint
   script:
     - scripts/banned_api_check.sh
+
+build:
+  stage: build
+  parallel:
+    matrix:
+      - FLAVOR: [Development, Staging, Production]
+  script:
+    - xcodebuild build -quiet
+        -project ios-project-template.xcodeproj
+        -scheme "ProjectTemplate-$FLAVOR"
+        -destination 'generic/platform=iOS Simulator'
+        -derivedDataPath "$DERIVED_DATA"
+        CODE_SIGNING_ALLOWED=NO
