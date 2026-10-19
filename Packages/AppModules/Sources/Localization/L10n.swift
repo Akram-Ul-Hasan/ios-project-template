@@ -3,6 +3,10 @@ import Foundation
 /// Type-safe access to `Localizable.xcstrings`. Every user-facing string goes through here (rule 18).
 /// Add a key to the catalog in every language first, then its accessor below.
 public enum L10n {
+    public enum Account {
+        public static var logout: String { tr("account.logout") }
+    }
+
     public enum Blocking {
         public static var maintenanceTitle: String { tr("blocking.maintenance_title") }
         public static var updateTitle: String { tr("blocking.update_title") }
@@ -49,6 +53,14 @@ public enum L10n {
     public enum Lock {
         public static var title: String { tr("lock.title") }
         public static var unlock: String { tr("lock.unlock") }
+    }
+
+    public enum Login {
+        public static var title: String { tr("login.title") }
+        public static var subtitle: String { tr("login.subtitle") }
+        public static var phone: String { tr("login.phone") }
+        public static var password: String { tr("login.password") }
+        public static var submit: String { tr("login.submit") }
     }
 
     public enum Offline {

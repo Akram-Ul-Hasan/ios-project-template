@@ -19,7 +19,7 @@ let package = Package(
             name: "AppModules",
             targets: [
                 "Localization", "SharedDomain", "Core", "DesignSystem",
-                "AuthDomain", "AuthData",
+                "AuthDomain", "AuthData", "AuthPresentation",
             ])
     ],
     targets: [
@@ -36,6 +36,10 @@ let package = Package(
         .target(name: "AuthDomain", dependencies: ["SharedDomain"], path: "Sources/Features/Auth/Domain"),
         .target(
             name: "AuthData", dependencies: ["AuthDomain", "SharedDomain", "Core"], path: "Sources/Features/Auth/Data"),
+        .target(
+            name: "AuthPresentation",
+            dependencies: ["AuthDomain", "SharedDomain", "DesignSystem", "Core", "Localization"],
+            path: "Sources/Features/Auth/Presentation"),
         // Tests
         .target(name: "TestSupport", dependencies: ["Core", "SharedDomain"], path: "Tests/TestSupport"),
         .testTarget(name: "LocalizationTests", dependencies: ["Localization"]),
@@ -43,6 +47,7 @@ let package = Package(
         .testTarget(name: "DesignSystemTests", dependencies: ["DesignSystem", "TestSupport"]),
         .testTarget(name: "AuthDomainTests", dependencies: ["AuthDomain", "TestSupport"]),
         .testTarget(name: "AuthDataTests", dependencies: ["AuthData", "TestSupport"]),
+        .testTarget(name: "AuthPresentationTests", dependencies: ["AuthPresentation", "TestSupport"]),
         .testTarget(name: "CoreTests", dependencies: ["Core", "TestSupport"], resources: [.process("Resources/Mock")]),
     ],
     swiftLanguageModes: [.v6]
