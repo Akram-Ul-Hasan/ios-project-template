@@ -20,6 +20,8 @@ struct RootView: View {
 
     var body: some View {
         content
+            .offlineBanner()
+            .feedbackWindow(container.feedback, bottomInset: phase == .signedIn ? AppSize.tabBarHeight : 0)
             .sessionLock(container.sessionManager, isActive: phase == .signedIn)
             .privacyScreen()
             .animation(AppAnimation.standard, value: phase)
