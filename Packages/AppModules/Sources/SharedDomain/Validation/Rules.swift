@@ -4,6 +4,11 @@ public enum Rules {
         $0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? .required : nil
     }
 
+    /// Pickers and dropdowns: something must be selected.
+    public static func selection<Value: Sendable>() -> ValidationRule<Value?> {
+        ValidationRule { $0 == nil ? .required : nil }
+    }
+
     public static func minLength(_ min: Int) -> ValidationRule<String> {
         ValidationRule { $0.count < min ? .tooShort(min: min) : nil }
     }

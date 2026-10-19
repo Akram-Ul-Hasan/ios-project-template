@@ -31,8 +31,61 @@ public enum L10n {
         public static var subscriptionRequired: String { tr("error.subscription_required") }
     }
 
+    public enum Input {
+        public static var showPassword: String { tr("input.show_password") }
+        public static var hidePassword: String { tr("input.hide_password") }
+        public static var search: String { tr("input.search") }
+        public static var clear: String { tr("input.clear") }
+        public static var select: String { tr("input.select") }
+        public static var verificationCode: String { tr("input.verification_code") }
+    }
+
+    public enum Offline {
+        public static var banner: String { tr("offline.banner") }
+        public static var backOnline: String { tr("offline.back_online") }
+    }
+
+    public enum Pagination {
+        public static var loadMoreFailed: String { tr("pagination.load_more_failed") }
+    }
+
+    public enum Permission {
+        public static var notNow: String { tr("permission.not_now") }
+        public static var deniedTitle: String { tr("permission.denied_title") }
+        public static var deniedMessage: String { tr("permission.denied_message") }
+        public static var restrictedMessage: String { tr("permission.restricted_message") }
+        public static var camera: String { tr("permission.camera") }
+        public static var microphone: String { tr("permission.microphone") }
+        public static var photos: String { tr("permission.photos") }
+        public static var location: String { tr("permission.location") }
+        public static var notifications: String { tr("permission.notifications") }
+        public static var contacts: String { tr("permission.contacts") }
+        public static var tracking: String { tr("permission.tracking") }
+    }
+
+    public enum Product {
+        public static var outOfStock: String { tr("product.out_of_stock") }
+        public static var addToCart: String { tr("product.add_to_cart") }
+    }
+
+    public enum Section {
+        public static var seeAll: String { tr("section.see_all") }
+    }
+
     public enum Session {
         public static var unlockReason: String { tr("session.unlock_reason") }
+    }
+
+    public enum State {
+        public static var emptyTitle: String { tr("state.empty_title") }
+        public static var loading: String { tr("state.loading") }
+        public static var offlineTitle: String { tr("state.offline_title") }
+    }
+
+    public enum Theme {
+        public static var system: String { tr("theme.system") }
+        public static var light: String { tr("theme.light") }
+        public static var dark: String { tr("theme.dark") }
     }
 
     public enum Validation {

@@ -28,11 +28,14 @@ let package = Package(
         // L1
         .target(name: "Core", dependencies: ["SharedDomain", "Localization"]),
         // L2
-        .target(name: "DesignSystem", dependencies: ["Core", "SharedDomain", "Localization"]),
+        .target(
+            name: "DesignSystem", dependencies: ["Core", "SharedDomain", "Localization"],
+            resources: [.process("Resources")]),
         // Tests
         .target(name: "TestSupport", dependencies: ["Core", "SharedDomain"], path: "Tests/TestSupport"),
         .testTarget(name: "LocalizationTests", dependencies: ["Localization"]),
         .testTarget(name: "SharedDomainTests", dependencies: ["SharedDomain"]),
+        .testTarget(name: "DesignSystemTests", dependencies: ["DesignSystem", "TestSupport"]),
         .testTarget(name: "CoreTests", dependencies: ["Core", "TestSupport"], resources: [.copy("Resources/Mock")]),
     ],
     swiftLanguageModes: [.v6]

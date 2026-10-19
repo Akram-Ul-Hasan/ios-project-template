@@ -9,6 +9,13 @@ struct RulesTests {
         #expect(Rules.required.validate(value) == expected)
     }
 
+    @Test("selection requires a value")
+    func selection() {
+        let rule: ValidationRule<Int?> = Rules.selection()
+        #expect(rule.validate(nil) == .required)
+        #expect(rule.validate(3) == nil)
+    }
+
     @Test("minLength / maxLength")
     func lengths() {
         #expect(Rules.minLength(3).validate("ab") == .tooShort(min: 3))
