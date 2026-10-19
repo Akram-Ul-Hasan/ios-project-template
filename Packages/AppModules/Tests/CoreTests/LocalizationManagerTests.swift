@@ -41,5 +41,18 @@ extension LanguageSensitive {
             #expect(L10n.Common.retry == "আবার চেষ্টা করুন")
             #expect(manager.locale.identifier == "bn_BD@numbers=beng")
         }
+
+        @Test("LanguageInterceptor sends the active language")
+        func acceptLanguage() async throws {
+            defer { LocalizationBundle.apply(.en) }
+            struct Ping: Endpoint {
+                var path: String { "/ping" }
+                var method: HTTPMethod { .get }
+            }
+            let request = URLRequest(url: URL(string: "https://x.test")!)
+            LocalizationBundle.apply(.bn)
+            let adapted = try await LanguageInterceptor().adapt(request, for: Ping())
+            #expect(adapted.value(forHTTPHeaderField: "Accept-Language") == "bn")
+        }
     }
 }
