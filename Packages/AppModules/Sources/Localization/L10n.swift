@@ -35,6 +35,12 @@ public enum L10n {
         public static var unlockReason: String { tr("session.unlock_reason") }
     }
 
+    public enum Theme {
+        public static var system: String { tr("theme.system") }
+        public static var light: String { tr("theme.light") }
+        public static var dark: String { tr("theme.dark") }
+    }
+
     public enum Validation {
         public static var required: String { tr("validation.required") }
         public static func tooShort(_ min: Int) -> String { tr("validation.too_short", min) }

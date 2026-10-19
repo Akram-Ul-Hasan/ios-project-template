@@ -30,6 +30,13 @@
         "identifier" : "CoreTests",
         "name" : "CoreTests"
       }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Packages\/AppModules",
+        "identifier" : "DesignSystemTests",
+        "name" : "DesignSystemTests"
+      }
     }
   ],
   "version" : 1
