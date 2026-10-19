@@ -1,0 +1,25 @@
+#!/bin/sh
+# Fast local feedback before a commit (§12). The real gate is GitLab protected branches + CI.
+
+branch=$(git symbolic-ref --short -q HEAD)   # empty while rebasing (detached HEAD)
+if [ -n "$branch" ]; then
+  case "$branch" in
+    main|dev)
+      echo "✖ Direct commits to '$branch' are blocked. Create feat/<name> from dev and open an MR into dev."
+      exit 1 ;;
+  esac
+  echo "$branch" | grep -Eq '^((feat|fix|refactor|chore|docs|test|ci|perf)/[a-z0-9._-]+|(release|hotfix)/[0-9]+\.[0-9]+\.[0-9]+)$' || {
+    echo "✖ Branch '$branch' must look like feat/my_change (feat|fix|refactor|chore|docs|test|ci|perf) or release/1.2.0"
+    exit 1
+  }
+fi
+
+# Secret scan: signing material, secret xcconfigs and private keys never enter the repo.
+staged=$(git diff --cached --name-only --diff-filter=ACMR)
+bad_files=$(printf '%s\n' "$staged" | grep -E '\.(p8|p12|mobileprovision|cer)$|\.secrets\.xcconfig$')
+if [ -n "$bad_files" ]; then
+  echo "✖ Refusing to commit secrets:"; printf '  %s\n' $bad_files; exit 1
+fi
+if git diff --cached -U0 --diff-filter=ACMR | grep '^+' | grep -Eq 'BEGIN ([A-Z]+ )?PRIVATE KEY'; then
+  echo "✖ Staged content contains a private key"; exit 1
+fi
