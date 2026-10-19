@@ -1,6 +1,7 @@
 import Core
 import DesignSystem
 import UIKit
+import UserNotifications
 import os
 
 /// Owns the `AppContainer` for the app's lifetime and handles UIKit-only callbacks (push, background tasks).
@@ -24,6 +25,7 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
     ) -> Bool {
         AppTypography.registerFonts()
+        UNUserNotificationCenter.current().delegate = self
         // Background task handlers must be registered before launch finishes.
         let pipeline = container?.imagePipeline
         container?.refreshScheduler.registerCacheCleanup { await pipeline?.trimDiskCache() }
