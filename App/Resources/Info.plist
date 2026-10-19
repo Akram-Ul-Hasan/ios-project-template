@@ -7,5 +7,16 @@
 	<string>$(APP_ENV)</string>
 	<key>BASE_URL</key>
 	<string>$(BASE_URL)</string>
+	<!-- Must match Core/Constants/BackgroundTaskID.swift. -->
+	<key>BGTaskSchedulerPermittedIdentifiers</key>
+	<array>
+		<string>com.technonext.projecttemplate.refresh</string>
+		<string>com.technonext.projecttemplate.cleanup</string>
+	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>processing</string>
+	</array>
 </dict>
 </plist>
