@@ -50,3 +50,24 @@ build:
         -destination 'generic/platform=iOS Simulator'
         -derivedDataPath "$DERIVED_DATA"
         CODE_SIGNING_ALLOWED=NO
+
+test:
+  stage: test
+  script:
+    - rm -rf coverage && mkdir coverage
+    - xcodebuild test -quiet
+        -project ios-project-template.xcodeproj
+        -scheme ProjectTemplate-Development
+        -destination "platform=iOS Simulator,name=$IOS_SIMULATOR"
+        -derivedDataPath "$DERIVED_DATA"
+        -resultBundlePath coverage/Tests.xcresult
+        -enableCodeCoverage YES
+        CODE_SIGNING_ALLOWED=NO
+    - xcrun xccov view --report --json coverage/Tests.xcresult > coverage/coverage.json
+    - 'jq -r ''"Coverage: \(.lineCoverage * 100 | . * 100 | round / 100)%"'' coverage/coverage.json'
+  coverage: '/Coverage: \d+(?:\.\d+)?%/'
+  artifacts:
+    when: always
+    expire_in: 2 weeks
+    paths:
+      - coverage/
