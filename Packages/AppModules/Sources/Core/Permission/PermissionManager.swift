@@ -25,6 +25,19 @@ public struct SystemPermissionManager: PermissionManager {
         self.handlers = handlers
     }
 
+    /// Every permission, backed by the real system APIs.
+    public init() {
+        self.init(handlers: [
+            .notifications: NotificationPermissionHandler(),
+            .locationWhenInUse: LocationPermissionHandler(),
+            .camera: CapturePermissionHandler(media: .video),
+            .microphone: CapturePermissionHandler(media: .audio),
+            .photos: PhotosPermissionHandler(),
+            .contacts: ContactsPermissionHandler(),
+            .tracking: TrackingPermissionHandler(),
+        ])
+    }
+
     public func status(of permission: AppPermission) async -> PermissionStatus {
         await handlers[permission]?.status() ?? .restricted
     }
