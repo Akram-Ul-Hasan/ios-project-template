@@ -501,6 +501,40 @@
         }
       }
     },
+    "offline.back_online" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Back online"
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "আবার অনলাইনে"
+          }
+        }
+      }
+    },
+    "offline.banner" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No internet connection"
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ইন্টারনেট সংযোগ নেই"
+          }
+        }
+      }
+    },
     "pagination.load_more_failed" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -514,6 +548,193 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "আরও লোড করা যায়নি। আবার চেষ্টা করতে ট্যাপ করুন।"
+          }
+        }
+      }
+    },
+    "permission.camera" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Camera access"
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ক্যামেরা অ্যাক্সেস"
+          }
+        }
+      }
+    },
+    "permission.contacts" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contacts access"
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "কন্টাক্ট অ্যাক্সেস"
+          }
+        }
+      }
+    },
+    "permission.denied_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Turn it on in Settings to use this feature."
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "এই ফিচার ব্যবহার করতে সেটিংসে গিয়ে চালু করুন।"
+          }
+        }
+      }
+    },
+    "permission.denied_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Permission needed"
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "অনুমতি প্রয়োজন"
+          }
+        }
+      }
+    },
+    "permission.location" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Location access"
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "অবস্থান অ্যাক্সেস"
+          }
+        }
+      }
+    },
+    "permission.microphone" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Microphone access"
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "মাইক্রোফোন অ্যাক্সেস"
+          }
+        }
+      }
+    },
+    "permission.not_now" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not now"
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "এখন নয়"
+          }
+        }
+      }
+    },
+    "permission.notifications" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notifications"
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "নোটিফিকেশন"
+          }
+        }
+      }
+    },
+    "permission.photos" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Photo access"
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ফটো অ্যাক্সেস"
+          }
+        }
+      }
+    },
+    "permission.restricted_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This is turned off on this device and can't be changed here."
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "এই ডিভাইসে এটি বন্ধ করা আছে এবং এখান থেকে পরিবর্তন করা যাবে না।"
+          }
+        }
+      }
+    },
+    "permission.tracking" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Personalized offers"
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ব্যক্তিগত অফার"
           }
         }
       }

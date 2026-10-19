@@ -40,8 +40,27 @@ public enum L10n {
         public static var verificationCode: String { tr("input.verification_code") }
     }
 
+    public enum Offline {
+        public static var banner: String { tr("offline.banner") }
+        public static var backOnline: String { tr("offline.back_online") }
+    }
+
     public enum Pagination {
         public static var loadMoreFailed: String { tr("pagination.load_more_failed") }
+    }
+
+    public enum Permission {
+        public static var notNow: String { tr("permission.not_now") }
+        public static var deniedTitle: String { tr("permission.denied_title") }
+        public static var deniedMessage: String { tr("permission.denied_message") }
+        public static var restrictedMessage: String { tr("permission.restricted_message") }
+        public static var camera: String { tr("permission.camera") }
+        public static var microphone: String { tr("permission.microphone") }
+        public static var photos: String { tr("permission.photos") }
+        public static var location: String { tr("permission.location") }
+        public static var notifications: String { tr("permission.notifications") }
+        public static var contacts: String { tr("permission.contacts") }
+        public static var tracking: String { tr("permission.tracking") }
     }
 
     public enum Session {
