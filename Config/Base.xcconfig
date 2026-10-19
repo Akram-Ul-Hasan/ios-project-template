@@ -9,3 +9,7 @@ PRODUCT_BUNDLE_IDENTIFIER = com.technonext.projecttemplate
 
 IPHONEOS_DEPLOYMENT_TARGET = 17.0
 SWIFT_VERSION = 6.0
+
+// Partial Info.plist merged into the generated one: carries APP_ENV / BASE_URL for Env.swift.
+GENERATE_INFOPLIST_FILE = YES
+INFOPLIST_FILE = App/Resources/Info.plist

@@ -14,9 +14,22 @@
 		C2FF110F308631D6001D0C99 /* ProjectTemplate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectTemplate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		C2FF1205308631D7001D0C99 /* Exceptions for "App" folder in "ProjectTemplate" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Resources/Info.plist,
+			);
+			target = C2FF110E308631D6001D0C99 /* ProjectTemplate */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		C2FF1111308631D6001D0C99 /* App */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				C2FF1205308631D7001D0C99 /* Exceptions for "App" folder in "ProjectTemplate" target */,
+			);
 			path = App;
 			sourceTree = "<group>";
 		};
