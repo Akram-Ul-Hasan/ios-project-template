@@ -63,6 +63,15 @@ public enum L10n {
         public static var tracking: String { tr("permission.tracking") }
     }
 
+    public enum Product {
+        public static var outOfStock: String { tr("product.out_of_stock") }
+        public static var addToCart: String { tr("product.add_to_cart") }
+    }
+
+    public enum Section {
+        public static var seeAll: String { tr("section.see_all") }
+    }
+
     public enum Session {
         public static var unlockReason: String { tr("session.unlock_reason") }
     }

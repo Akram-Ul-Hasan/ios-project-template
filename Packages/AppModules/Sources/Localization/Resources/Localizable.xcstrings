@@ -739,6 +739,57 @@
         }
       }
     },
+    "product.add_to_cart" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add to cart"
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "কার্টে যোগ করুন"
+          }
+        }
+      }
+    },
+    "product.out_of_stock" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Out of stock"
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "স্টক শেষ"
+          }
+        }
+      }
+    },
+    "section.see_all" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "See all"
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "সব দেখুন"
+          }
+        }
+      }
+    },
     "session.unlock_reason" : {
       "extractionState" : "manual",
       "localizations" : {
