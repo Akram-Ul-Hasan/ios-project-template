@@ -3,6 +3,12 @@ import Foundation
 /// Type-safe access to `Localizable.xcstrings`. Every user-facing string goes through here (rule 18).
 /// Add a key to the catalog in every language first, then its accessor below.
 public enum L10n {
+    public enum Blocking {
+        public static var maintenanceTitle: String { tr("blocking.maintenance_title") }
+        public static var updateTitle: String { tr("blocking.update_title") }
+        public static var updateAction: String { tr("blocking.update_action") }
+    }
+
     public enum Common {
         public static var ok: String { tr("common.ok") }
         public static var cancel: String { tr("common.cancel") }
@@ -40,9 +46,20 @@ public enum L10n {
         public static var verificationCode: String { tr("input.verification_code") }
     }
 
+    public enum Lock {
+        public static var title: String { tr("lock.title") }
+        public static var unlock: String { tr("lock.unlock") }
+    }
+
     public enum Offline {
         public static var banner: String { tr("offline.banner") }
         public static var backOnline: String { tr("offline.back_online") }
+    }
+
+    public enum Onboarding {
+        public static var title: String { tr("onboarding.title") }
+        public static var message: String { tr("onboarding.message") }
+        public static var getStarted: String { tr("onboarding.get_started") }
     }
 
     public enum Pagination {
@@ -90,6 +107,11 @@ public enum L10n {
     public enum Sheet {
         public static var filter: String { tr("sheet.filter") }
         public static var deliveryArea: String { tr("sheet.delivery_area") }
+    }
+
+    public enum SignIn {
+        public static var title: String { tr("sign_in.title") }
+        public static var skip: String { tr("sign_in.skip") }
     }
 
     public enum State {
