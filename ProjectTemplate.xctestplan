@@ -51,6 +51,13 @@
         "identifier" : "AuthDomainTests",
         "name" : "AuthDomainTests"
       }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Packages\/AppModules",
+        "identifier" : "AuthDataTests",
+        "name" : "AuthDataTests"
+      }
     }
   ],
   "version" : 1

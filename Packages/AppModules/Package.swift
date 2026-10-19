@@ -42,6 +42,7 @@ let package = Package(
         .testTarget(name: "SharedDomainTests", dependencies: ["SharedDomain"]),
         .testTarget(name: "DesignSystemTests", dependencies: ["DesignSystem", "TestSupport"]),
         .testTarget(name: "AuthDomainTests", dependencies: ["AuthDomain", "TestSupport"]),
+        .testTarget(name: "AuthDataTests", dependencies: ["AuthData", "TestSupport"]),
         .testTarget(name: "CoreTests", dependencies: ["Core", "TestSupport"], resources: [.copy("Resources/Mock")]),
     ],
     swiftLanguageModes: [.v6]
