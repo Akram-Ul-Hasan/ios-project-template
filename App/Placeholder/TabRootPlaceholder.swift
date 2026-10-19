@@ -6,6 +6,7 @@ import SwiftUI
 struct TabRootPlaceholder: View {
     let tab: AppTab
     let router: AppRouter
+    let onLogout: () -> Void
 
     var body: some View {
         VStack(spacing: AppSpacing.s16) {
@@ -17,6 +18,7 @@ struct TabRootPlaceholder: View {
             case .account:
                 SecondaryButton(L10n.Route.orders) { router.push(.orders) }
                 SecondaryButton(L10n.Route.settings) { router.push(.settings) }
+                AppTextButton(L10n.Account.logout, action: onLogout)
             case .categories, .cart:
                 EmptyView()
             }

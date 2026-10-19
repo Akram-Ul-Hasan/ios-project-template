@@ -122,11 +122,6 @@ public enum L10n {
         public static var deliveryArea: String { tr("sheet.delivery_area") }
     }
 
-    public enum SignIn {
-        public static var title: String { tr("sign_in.title") }
-        public static var skip: String { tr("sign_in.skip") }
-    }
-
     public enum State {
         public static var emptyTitle: String { tr("state.empty_title") }
         public static var loading: String { tr("state.loading") }

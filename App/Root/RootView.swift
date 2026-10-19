@@ -1,3 +1,4 @@
+import AuthPresentation
 import Core
 import DesignSystem
 import Foundation
@@ -67,7 +68,7 @@ struct RootView: View {
                 Task { await container.pushPermission.requestAndRegister() }
             }
         case .signedOut:
-            SignInPlaceholder(tokenStore: container.tokenStore) { phase = .signedIn }
+            LoginScreen(viewModel: container.auth.makeLoginViewModel { _ in phase = .signedIn })
         case .signedIn:
             MainTabView(container: container, router: container.router)
         case .blocked(let event):

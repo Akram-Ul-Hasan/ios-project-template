@@ -1,4 +1,6 @@
+import Core
 import DesignSystem
+import SharedDomain
 import SwiftUI
 
 /// The signed-in shell: native tab bar, one `NavigationStack` per tab so each keeps its history (§6b).
@@ -11,7 +13,7 @@ struct MainTabView: View {
         TabView(selection: selection) {
             ForEach(AppTab.allCases) { tab in
                 NavigationStack(path: path(for: tab)) {
-                    TabRootPlaceholder(tab: tab, router: router)
+                    TabRootPlaceholder(tab: tab, router: router, onLogout: logout)
                         .navigationDestination(for: Route.self) { RouteView(route: $0, container: container) }
                 }
                 .tabItem { Label(tab.title, systemImage: tab.systemImage) }
@@ -20,6 +22,14 @@ struct MainTabView: View {
         }
         .tint(AppColors.brandPrimary)
         .appSheet(item: $router.sheet) { SheetRouteView(sheet: $0, router: router) }
+    }
+
+    /// Revokes the session on the backend (best effort), then wipes local data; RootView shows login.
+    private func logout() {
+        Task {
+            try? await container.auth.logoutUseCase()
+            await container.sessionManager.logout()
+        }
     }
 
     /// SwiftUI calls the setter even when the current tab is tapped again, which `select` turns into pop-to-root.

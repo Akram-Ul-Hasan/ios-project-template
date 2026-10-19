@@ -1181,40 +1181,6 @@
         }
       }
     },
-    "sign_in.skip" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Skip for now"
-          }
-        },
-        "bn" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "আপাতত এড়িয়ে যান"
-          }
-        }
-      }
-    },
-    "sign_in.title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sign in"
-          }
-        },
-        "bn" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "সাইন ইন"
-          }
-        }
-      }
-    },
     "state.empty_title" : {
       "extractionState" : "manual",
       "localizations" : {

@@ -1,3 +1,4 @@
+import AuthDomain
 import Core
 import DesignSystem
 import Foundation
@@ -39,6 +40,9 @@ final class AppContainer {
     let pushPermission: PushPermissionService
     /// Latest APNs token; the notification feature sends it to the backend.
     var apnsToken: String?
+
+    // Features
+    let auth: AuthContainer
 
     // Diagnostics and background work
     let metrics: MetricsCollector
@@ -87,6 +91,15 @@ final class AppContainer {
             biometrics: BiometricAuthService(), lockTimeout: Self.biometricLockTimeout)
 
         pushPermission = PushPermissionService(permissions: permissions)
+
+        auth = AuthContainer(
+            env: env, unauthenticatedClient: unauthenticatedClient, authenticatedClient: authenticatedClient,
+            tokenStore: tokenStore, mockData: mockData, errorHandler: errorHandler, network: networkMonitor)
+        let refreshSession = auth.refreshSessionUseCase
+        tokenRefreshBridge.setHandler { refreshToken in
+            let tokens = try await refreshSession(refreshToken)
+            return AuthTokens(accessToken: tokens.accessToken, refreshToken: tokens.refreshToken)
+        }
         metrics = MetricsCollector(upload: nil)
     }
 
