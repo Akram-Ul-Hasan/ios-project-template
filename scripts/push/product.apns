@@ -1,0 +1,11 @@
+{
+  "Simulator Target Bundle": "com.technonext.projecttemplate.dev",
+  "aps": {
+    "alert": {
+      "title": "New price on your favourite",
+      "body": "Miniket rice is now ৳399."
+    },
+    "sound": "default"
+  },
+  "deeplink": "projecttemplate://product/123"
+}
