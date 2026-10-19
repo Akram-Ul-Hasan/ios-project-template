@@ -40,6 +40,14 @@ final class AppRouter {
         sheet = nil
     }
 
+    /// Shows a deep link's tab with its full stack, replacing that tab's history.
+    func open(_ link: DeepLink) {
+        AppLogger.navigation.info("open deep link \(String(describing: link.tab), privacy: .public)")
+        sheet = nil
+        selectedTab = link.tab
+        paths[link.tab] = link.routes
+    }
+
     /// Back to a clean slate, e.g. after logout.
     func reset() {
         selectedTab = .home
