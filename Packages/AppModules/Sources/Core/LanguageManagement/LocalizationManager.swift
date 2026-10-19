@@ -21,6 +21,8 @@ public final class LocalizationManager {
     /// For `.environment(\.locale, …)` and every formatter.
     public var locale: Locale { Self.locale(for: language) }
 
+    public var formatters: AppFormatters { AppFormatters(locale: locale) }
+
     public func set(_ language: AppLanguage) {
         guard language != self.language else { return }
         preferences.set(language, for: .language)
