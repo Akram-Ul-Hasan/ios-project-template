@@ -14,9 +14,11 @@ let package = Package(
     defaultLocalization: "en",
     platforms: [.iOS(.v17)],
     products: [
-        .library(name: "AppModules", targets: [
-            "Localization", "SharedDomain", "Core", "DesignSystem",
-        ]),
+        .library(
+            name: "AppModules",
+            targets: [
+                "Localization", "SharedDomain", "Core", "DesignSystem",
+            ])
     ],
     targets: [
         // L0

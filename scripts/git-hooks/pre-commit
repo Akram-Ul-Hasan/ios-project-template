@@ -23,3 +23,23 @@ fi
 if git diff --cached -U0 --diff-filter=ACMR | grep '^+' | grep -Eq 'BEGIN ([A-Z]+ )?PRIVATE KEY'; then
   echo "✖ Staged content contains a private key"; exit 1
 fi
+
+root=$(git rev-parse --show-toplevel)
+
+# Formatting (config: .swift-format). Fix with: swift format format -i <file>
+swift_files=$(printf '%s\n' "$staged" | grep '\.swift$')
+if [ -n "$swift_files" ]; then
+  printf '%s\n' "$swift_files" | tr '\n' '\0' | xargs -0 swift format lint --strict || {
+    echo "✖ swift format lint failed. Fix with: swift format format -i <file>"; exit 1; }
+fi
+
+# Banned APIs (print, try!, force unwrap, UserDefaults.standard, AsyncImage …)
+if [ -n "$staged" ]; then
+  # shellcheck disable=SC2086
+  "$root/scripts/banned_api_check.sh" $staged || { echo "✖ Banned API used (see rules in CLAUDE.md §7)"; exit 1; }
+fi
+
+# Target graph, only when the manifest changes.
+if printf '%s\n' "$staged" | grep -q '^Packages/AppModules/Package.swift$'; then
+  "$root/scripts/check_target_graph.sh" || exit 1
+fi
