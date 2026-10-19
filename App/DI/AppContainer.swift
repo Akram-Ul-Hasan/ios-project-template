@@ -36,6 +36,9 @@ final class AppContainer {
     let theme: ThemeManager
     let permissions: any PermissionManager = SystemPermissionManager()
     let imagePipeline: ImagePipeline?
+    let pushPermission: PushPermissionService
+    /// Latest APNs token; the notification feature sends it to the backend.
+    var apnsToken: String?
 
     // Diagnostics and background work
     let metrics: MetricsCollector
@@ -83,6 +86,7 @@ final class AppContainer {
             cleaner: SessionCleaner(cleanables: cleanables), events: sessionEvents,
             biometrics: BiometricAuthService(), lockTimeout: Self.biometricLockTimeout)
 
+        pushPermission = PushPermissionService(permissions: permissions)
         metrics = MetricsCollector(upload: nil)
     }
 

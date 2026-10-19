@@ -63,6 +63,8 @@ struct RootView: View {
             OnboardingPlaceholder {
                 container.preferences.set(true, for: .onboardingSeen)
                 phase = resolvedPhase()
+                // The right moment to ask: after onboarding, never at launch (§6j).
+                Task { await container.pushPermission.requestAndRegister() }
             }
         case .signedOut:
             SignInPlaceholder(tokenStore: container.tokenStore) { phase = .signedIn }

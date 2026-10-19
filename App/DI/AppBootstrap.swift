@@ -13,6 +13,7 @@ extension AppContainer {
             AppLogger.persistence.fault("store unavailable: \(error.localizedDescription, privacy: .public)")
         }
         await imagePipeline?.trimDiskCache()
+        await pushPermission.registerIfAuthorized()
         refreshScheduler.scheduleAppRefresh()
         refreshScheduler.scheduleCacheCleanup()
     }

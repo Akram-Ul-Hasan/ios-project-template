@@ -4,6 +4,9 @@
 <dict>
 	<!-- Universal links. The host is per flavor (ASSOCIATED_DOMAIN in Config/*.xcconfig) and must serve
 	     /.well-known/apple-app-site-association; hosts must also be in DeepLinkConstants.universalLinkHosts. -->
+	<!-- Push notifications. Xcode switches it to "production" when exporting for the App Store. -->
+	<key>aps-environment</key>
+	<string>development</string>
 	<key>com.apple.developer.associated-domains</key>
 	<array>
 		<string>applinks:$(ASSOCIATED_DOMAIN)</string>

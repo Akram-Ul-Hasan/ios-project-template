@@ -29,4 +29,14 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
         container?.refreshScheduler.registerCacheCleanup { await pipeline?.trimDiskCache() }
         return true
     }
+
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let token = deviceToken.map { ($0 < 16 ? "0" : "") + String($0, radix: 16) }.joined()
+        container?.apnsToken = token
+        AppLogger.lifecycle.info("registered for push: \(token, privacy: .private)")
+    }
+
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: any Error) {
+        AppLogger.lifecycle.error("push registration failed: \(error.localizedDescription, privacy: .public)")
+    }
 }
