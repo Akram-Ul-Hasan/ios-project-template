@@ -5,4 +5,5 @@ root=$(cd "$(dirname "$0")/.." && pwd)
 cd "$root/Packages/AppModules"
 xcodebuild test -quiet -scheme AppModules \
   -destination "platform=iOS Simulator,name=${IOS_SIMULATOR:-iPhone 17}" \
+  -collect-test-diagnostics never \
   -derivedDataPath "$root/.build/DerivedData-package" "$@"

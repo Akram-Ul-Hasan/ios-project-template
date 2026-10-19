@@ -71,6 +71,7 @@ test:
         -derivedDataPath "$DERIVED_DATA"
         -resultBundlePath coverage/Tests.xcresult
         -enableCodeCoverage YES
+        -collect-test-diagnostics never
         CODE_SIGNING_ALLOWED=NO
     - xcrun xccov view --report --json coverage/Tests.xcresult > coverage/coverage.json
     - 'jq -r ''"Coverage: \(.lineCoverage * 100 | . * 100 | round / 100)%"'' coverage/coverage.json'
