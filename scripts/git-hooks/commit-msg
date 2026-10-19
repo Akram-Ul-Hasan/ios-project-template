@@ -1,0 +1,20 @@
+#!/bin/sh
+# One-line Conventional Commits: type(scope)?: subject   (§12)
+
+msg_file="$1"
+# Drop comments and everything below the `git commit -v` scissors line.
+body=$(sed '/^# -\{24\} >8 -\{24\}$/,$d' "$msg_file" | grep -v '^#')
+msg=$(printf '%s\n' "$body" | sed -n '/[^[:space:]]/{p;q;}')
+
+# Messages git writes itself.
+printf '%s\n' "$msg" | grep -Eq '^(Merge |Revert "|fixup! |squash! )' && exit 0
+
+printf '%s\n' "$msg" | grep -Eq '^(feat|fix|refactor|perf|test|docs|style|chore|build|ci|revert)(\([a-z0-9-]+\))?!?: .{3,72}$' || {
+  echo "✖ Commit message: '$msg'"
+  echo "  Use: type(scope)?: subject   e.g. feat(cart): add quantity stepper"
+  echo "  Types: feat fix refactor perf test docs style chore build ci revert. Subject 3-72 chars."
+  exit 1
+}
+
+lines=$(printf '%s\n' "$body" | grep -cv '^[[:space:]]*$')
+[ "$lines" -le 1 ] || { echo "✖ One-line commit messages only"; exit 1; }
