@@ -19,7 +19,7 @@ let package = Package(
             name: "AppModules",
             targets: [
                 "Localization", "SharedDomain", "Core", "DesignSystem",
-                "AuthDomain",
+                "AuthDomain", "AuthData",
             ])
     ],
     targets: [
@@ -34,6 +34,8 @@ let package = Package(
             resources: [.process("Resources")]),
         // Feature: Auth
         .target(name: "AuthDomain", dependencies: ["SharedDomain"], path: "Sources/Features/Auth/Domain"),
+        .target(
+            name: "AuthData", dependencies: ["AuthDomain", "SharedDomain", "Core"], path: "Sources/Features/Auth/Data"),
         // Tests
         .target(name: "TestSupport", dependencies: ["Core", "SharedDomain"], path: "Tests/TestSupport"),
         .testTarget(name: "LocalizationTests", dependencies: ["Localization"]),
