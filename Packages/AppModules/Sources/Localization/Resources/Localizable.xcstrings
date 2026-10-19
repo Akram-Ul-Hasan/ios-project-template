@@ -399,6 +399,23 @@
         }
       }
     },
+    "session.unlock_reason" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unlock to continue"
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "চালিয়ে যেতে আনলক করুন"
+          }
+        }
+      }
+    },
     "validation.email" : {
       "extractionState" : "manual",
       "localizations" : {

@@ -31,6 +31,10 @@ public enum L10n {
         public static var subscriptionRequired: String { tr("error.subscription_required") }
     }
 
+    public enum Session {
+        public static var unlockReason: String { tr("session.unlock_reason") }
+    }
+
     public enum Validation {
         public static var required: String { tr("validation.required") }
         public static func tooShort(_ min: Int) -> String { tr("validation.too_short", min) }
