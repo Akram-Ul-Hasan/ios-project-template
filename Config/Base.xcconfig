@@ -1,0 +1,11 @@
+// Shared by every flavor. Only PUBLIC values belong here: anything shipped in the app is extractable.
+// Real secrets come from the backend after login. Local overrides go in an untracked *.secrets.xcconfig.
+
+MARKETING_VERSION = 0.1.0
+CURRENT_PROJECT_VERSION = 1
+
+PRODUCT_NAME = ProjectTemplate
+PRODUCT_BUNDLE_IDENTIFIER = com.technonext.projecttemplate
+
+IPHONEOS_DEPLOYMENT_TARGET = 17.0
+SWIFT_VERSION = 6.0

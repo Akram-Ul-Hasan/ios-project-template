@@ -1,0 +1,6 @@
+#include "Base.xcconfig"
+
+APP_ENV = development
+// `/$()/` stops xcconfig from treating `//` as a comment.
+BASE_URL = https:/$()/api-dev.example.com
+SWIFT_ACTIVE_COMPILATION_CONDITIONS = $(inherited) DEVELOPMENT

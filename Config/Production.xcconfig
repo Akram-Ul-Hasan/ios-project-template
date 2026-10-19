@@ -1,0 +1,5 @@
+#include "Base.xcconfig"
+
+APP_ENV = production
+BASE_URL = https:/$()/api.example.com
+SWIFT_ACTIVE_COMPILATION_CONDITIONS = $(inherited) PRODUCTION
