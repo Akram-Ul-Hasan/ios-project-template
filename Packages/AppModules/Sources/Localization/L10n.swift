@@ -63,9 +63,20 @@ public enum L10n {
         public static var tracking: String { tr("permission.tracking") }
     }
 
+    public enum Placeholder {
+        public static var message: String { tr("placeholder.message") }
+    }
+
     public enum Product {
         public static var outOfStock: String { tr("product.out_of_stock") }
         public static var addToCart: String { tr("product.add_to_cart") }
+    }
+
+    public enum Route {
+        public static var productDetails: String { tr("route.product_details") }
+        public static var orders: String { tr("route.orders") }
+        public static var orderDetails: String { tr("route.order_details") }
+        public static var settings: String { tr("route.settings") }
     }
 
     public enum Section {
@@ -76,10 +87,22 @@ public enum L10n {
         public static var unlockReason: String { tr("session.unlock_reason") }
     }
 
+    public enum Sheet {
+        public static var filter: String { tr("sheet.filter") }
+        public static var deliveryArea: String { tr("sheet.delivery_area") }
+    }
+
     public enum State {
         public static var emptyTitle: String { tr("state.empty_title") }
         public static var loading: String { tr("state.loading") }
         public static var offlineTitle: String { tr("state.offline_title") }
+    }
+
+    public enum Tab {
+        public static var home: String { tr("tab.home") }
+        public static var categories: String { tr("tab.categories") }
+        public static var cart: String { tr("tab.cart") }
+        public static var account: String { tr("tab.account") }
     }
 
     public enum Theme {
