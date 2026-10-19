@@ -35,6 +35,12 @@ public enum L10n {
         public static var unlockReason: String { tr("session.unlock_reason") }
     }
 
+    public enum State {
+        public static var emptyTitle: String { tr("state.empty_title") }
+        public static var loading: String { tr("state.loading") }
+        public static var offlineTitle: String { tr("state.offline_title") }
+    }
+
     public enum Theme {
         public static var system: String { tr("theme.system") }
         public static var light: String { tr("theme.light") }
