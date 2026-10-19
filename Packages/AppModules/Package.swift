@@ -22,7 +22,7 @@ let package = Package(
     ],
     targets: [
         // L0
-        .target(name: "Localization"),
+        .target(name: "Localization", resources: [.process("Resources")]),
         .target(name: "SharedDomain"),
         // L1
         .target(name: "Core", dependencies: ["SharedDomain", "Localization"]),
