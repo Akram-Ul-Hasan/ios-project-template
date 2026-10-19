@@ -6,6 +6,10 @@
 	objectVersion = 110;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		C2FF1208308631D7001D0C99 /* AppModules in Frameworks */ = {isa = PBXBuildFile; productRef = C2FF1207308631D7001D0C99 /* AppModules */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		C2FF1200308631D7001D0C99 /* Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Base.xcconfig; sourceTree = "<group>"; };
 		C2FF1201308631D7001D0C99 /* Development.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Development.xcconfig; sourceTree = "<group>"; };
@@ -39,6 +43,7 @@
 		C2FF110C308631D6001D0C99 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
+				C2FF1208308631D7001D0C99 /* AppModules in Frameworks */,
 			);
 		};
 /* End PBXFrameworksBuildPhase section */
@@ -89,6 +94,9 @@
 				C2FF1111308631D6001D0C99 /* App */,
 			);
 			name = ProjectTemplate;
+			packageProductDependencies = (
+				C2FF1207308631D7001D0C99 /* AppModules */,
+			);
 			productName = ProjectTemplate;
 			productReference = C2FF110F308631D6001D0C99 /* ProjectTemplate.app */;
 			productType = "com.apple.product-type.application";
@@ -117,6 +125,9 @@
 			);
 			mainGroup = C2FF1106308631D6001D0C99;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				C2FF1206308631D7001D0C99 /* XCLocalSwiftPackageReference "Packages/AppModules" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = C2FF1110308631D6001D0C99 /* Products */;
 			projectDirPath = "";
@@ -518,6 +529,20 @@
 			defaultConfigurationName = "Release-Production";
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		C2FF1206308631D7001D0C99 /* XCLocalSwiftPackageReference "Packages/AppModules" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/AppModules;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C2FF1207308631D7001D0C99 /* AppModules */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AppModules;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C2FF1107308631D6001D0C99 /* Project object */;
 	validationLevel = 1;
