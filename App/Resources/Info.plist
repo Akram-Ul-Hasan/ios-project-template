@@ -7,5 +7,31 @@
 	<string>$(APP_ENV)</string>
 	<key>BASE_URL</key>
 	<string>$(BASE_URL)</string>
+	<!-- Must match Core/Constants/BackgroundTaskID.swift. -->
+	<key>BGTaskSchedulerPermittedIdentifiers</key>
+	<array>
+		<string>com.technonext.projecttemplate.refresh</string>
+		<string>com.technonext.projecttemplate.cleanup</string>
+	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>processing</string>
+	</array>
+	<!-- Permission usage descriptions: English here, every language in InfoPlist.xcstrings. Remove unused ones. -->
+	<key>NSCameraUsageDescription</key>
+	<string>The camera is used to scan codes and take photos you choose to upload.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>The microphone is used when you record voice notes or videos.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Photo access lets you pick images to upload.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Your location is used to find delivery addresses and nearby stores.</string>
+	<key>NSContactsUsageDescription</key>
+	<string>Contacts are used only when you choose to invite or send to a friend.</string>
+	<key>NSUserTrackingUsageDescription</key>
+	<string>This lets us show you more relevant offers.</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Face ID keeps your account locked when you leave the app.</string>
 </dict>
 </plist>
