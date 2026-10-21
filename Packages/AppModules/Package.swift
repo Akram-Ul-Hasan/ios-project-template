@@ -20,7 +20,7 @@ let package = Package(
             targets: [
                 "Localization", "SharedDomain", "Core", "DesignSystem",
                 "AuthDomain", "AuthData", "AuthPresentation",
-                "CatalogDomain", "CatalogData",
+                "CatalogDomain", "CatalogData", "CatalogPresentation",
             ])
     ],
     targets: [
@@ -46,6 +46,10 @@ let package = Package(
         .target(
             name: "CatalogData", dependencies: ["CatalogDomain", "SharedDomain", "Core"],
             path: "Sources/Features/Catalog/Data", resources: [.process("Model/Local/Catalog.xcdatamodeld")]),
+        .target(
+            name: "CatalogPresentation",
+            dependencies: ["CatalogDomain", "SharedDomain", "DesignSystem", "Core", "Localization"],
+            path: "Sources/Features/Catalog/Presentation"),
         // Tests
         .target(name: "TestSupport", dependencies: ["Core", "SharedDomain"], path: "Tests/TestSupport"),
         .testTarget(name: "LocalizationTests", dependencies: ["Localization"]),
@@ -56,6 +60,7 @@ let package = Package(
         .testTarget(name: "AuthPresentationTests", dependencies: ["AuthPresentation", "TestSupport"]),
         .testTarget(name: "CatalogDomainTests", dependencies: ["CatalogDomain", "TestSupport"]),
         .testTarget(name: "CatalogDataTests", dependencies: ["CatalogData", "TestSupport"]),
+        .testTarget(name: "CatalogPresentationTests", dependencies: ["CatalogPresentation", "TestSupport"]),
         .testTarget(name: "CoreTests", dependencies: ["Core", "TestSupport"], resources: [.process("Resources/Mock")]),
     ],
     swiftLanguageModes: [.v6]

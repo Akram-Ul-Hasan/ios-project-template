@@ -79,6 +79,13 @@
         "identifier" : "CatalogDataTests",
         "name" : "CatalogDataTests"
       }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Packages\/AppModules",
+        "identifier" : "CatalogPresentationTests",
+        "name" : "CatalogPresentationTests"
+      }
     }
   ],
   "version" : 1

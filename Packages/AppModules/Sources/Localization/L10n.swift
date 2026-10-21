@@ -13,6 +13,15 @@ public enum L10n {
         public static var updateAction: String { tr("blocking.update_action") }
     }
 
+    public enum Catalog {
+        public static var title: String { tr("catalog.title") }
+        public static var searchPlaceholder: String { tr("catalog.search_placeholder") }
+        public static var noResults: String { tr("catalog.no_results") }
+        public static var noResultsMessage: String { tr("catalog.no_results_message") }
+        public static var inStock: String { tr("catalog.in_stock") }
+        public static var description: String { tr("catalog.description") }
+    }
+
     public enum Common {
         public static var ok: String { tr("common.ok") }
         public static var cancel: String { tr("common.cancel") }
