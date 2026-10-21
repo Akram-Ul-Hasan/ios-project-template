@@ -182,6 +182,7 @@ public enum L10n {
         public static var mismatch: String { tr("validation.mismatch") }
         public static var outOfRange: String { tr("validation.out_of_range") }
     }
+    // create_feature: accessors
 }
 
 extension L10n {

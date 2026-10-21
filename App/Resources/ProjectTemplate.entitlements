@@ -7,6 +7,12 @@
 	<!-- Push notifications. Xcode switches it to "production" when exporting for the App Store. -->
 	<key>aps-environment</key>
 	<string>development</string>
+	<!-- App Attest; Xcode uses "production" for App Store builds. -->
+	<key>com.apple.developer.devicecheck.appattest-environment</key>
+	<string>development</string>
+	<!-- Data Protection: every app file is encrypted while the device is locked (§6l). -->
+	<key>com.apple.developer.default-data-protection</key>
+	<string>NSFileProtectionComplete</string>
 	<key>com.apple.developer.associated-domains</key>
 	<array>
 		<string>applinks:$(ASSOCIATED_DOMAIN)</string>

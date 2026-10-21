@@ -5,4 +5,7 @@ APP_DISPLAY_NAME = ProjectTemplate
 BUNDLE_ID_SUFFIX =
 BASE_URL = https:/$()/api.example.com
 ASSOCIATED_DOMAIN = example.com
+// Certificate pinning (§6l): base64 SHA-256 of the API host's public keys, primary and backup, space-separated.
+// Leave empty only until the backend team provides them: the app logs a fault and connects without pinning.
+PINNED_PUBLIC_KEY_HASHES =
 SWIFT_ACTIVE_COMPILATION_CONDITIONS = $(inherited) PRODUCTION

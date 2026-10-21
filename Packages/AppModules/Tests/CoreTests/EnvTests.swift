@@ -13,6 +13,16 @@ struct EnvTests {
         #expect(env.isDiagnosticsEnabled)
     }
 
+    @Test("Pins are optional and split on spaces or commas")
+    func pins() throws {
+        let none = try Env(infoDictionary: ["APP_ENV": "development", "BASE_URL": "https://x.com"])
+        #expect(none.pinnedKeyHashes.isEmpty)
+        let two = try Env(infoDictionary: [
+            "APP_ENV": "production", "BASE_URL": "https://x.com", "PINNED_PUBLIC_KEY_HASHES": "aaa=, bbb=",
+        ])
+        #expect(two.pinnedKeyHashes == ["aaa=", "bbb="])
+    }
+
     @Test("Production disables diagnostics")
     func production() throws {
         let env = try Env(infoDictionary: ["APP_ENV": "production", "BASE_URL": "https://api.example.com"])

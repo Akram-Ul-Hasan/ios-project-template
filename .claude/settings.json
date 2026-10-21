@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(xcodebuild build:*)",
+      "Bash(xcodebuild test:*)",
+      "Bash(xcodebuild -list:*)",
+      "Bash(swift build:*)",
+      "Bash(swift test:*)",
+      "Bash(swift format lint:*)",
+      "Bash(swift format format:*)",
+      "Bash(swift package dump-package:*)",
+      "Bash(xcrun simctl list:*)",
+      "Bash(xcrun simctl push:*)",
+      "Bash(scripts/check_target_graph.sh)",
+      "Bash(scripts/check_imports.sh)",
+      "Bash(scripts/banned_api_check.sh:*)",
+      "Bash(scripts/build_package.sh:*)",
+      "Bash(scripts/test_package.sh:*)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)"
+    ]
+  }
+}

@@ -46,6 +46,12 @@ final class AppContainer {
     let auth: AuthContainer
     let catalog: CatalogContainer
 
+    // Device integrity (§6l)
+    let securityPolicy: SecurityPolicy
+    /// Used by features whose endpoints the backend protects with App Attest.
+    let appAttest: any AppAttesting
+    var securityReport: SecurityReport?
+
     // Diagnostics and background work
     let metrics: MetricsCollector
     let refreshScheduler = AppRefreshScheduler()
@@ -54,11 +60,13 @@ final class AppContainer {
 
     init(env: Env) {
         self.env = env
+        securityPolicy = SecurityPolicy(environment: env.environment)
         router = AppRouter()
         deepLinks = DeepLinkHandler(router: router)
         preferences = UserDefaultsPreferencesStore()
         keychain = KeychainService(accessGroup: nil)
         tokenStore = SecureTokenStore(keychain: keychain)
+        appAttest = AppAttestService(keychain: keychain)
         Self.wipeKeychainOnFirstLaunch(preferences: preferences, keychain: keychain)
 
         // Every one of these is optional on purpose: a failure degrades a feature, it never crashes the app.
@@ -71,7 +79,7 @@ final class AppContainer {
         let refresher = TokenRefresher(store: tokenStore, events: sessionEvents) { [tokenRefreshBridge] token in
             try await tokenRefreshBridge.refresh(token)
         }
-        let session = URLSessionHTTPClient.makeSession()
+        let session = URLSessionHTTPClient.makeSession(delegate: Self.makePinningDelegate(env: env))
         let log = NetworkLogInterceptor(enabled: env.isDiagnosticsEnabled)
         unauthenticatedClient = URLSessionHTTPClient(
             baseURL: env.baseURL, session: session,
@@ -108,6 +116,16 @@ final class AppContainer {
             return AuthTokens(accessToken: tokens.accessToken, refreshToken: tokens.refreshToken)
         }
         metrics = MetricsCollector(upload: nil)
+    }
+
+    /// Pinning for staging and production (§6l); development stays unpinned so debugging proxies work.
+    private static func makePinningDelegate(env: Env) -> CertificatePinningDelegate? {
+        guard env.environment != .development, let host = env.baseURL.host() else { return nil }
+        guard !env.pinnedKeyHashes.isEmpty else {
+            AppLogger.security.fault("certificate pinning is OFF: no PINNED_PUBLIC_KEY_HASHES for this flavor")
+            return nil
+        }
+        return CertificatePinningDelegate(host: host, pins: env.pinnedKeyHashes)
     }
 
     /// The Keychain survives app deletion: on the first launch after an install, old tokens must not log anyone in.

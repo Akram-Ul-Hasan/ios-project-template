@@ -5,4 +5,7 @@ APP_DISPLAY_NAME = PT Staging
 BUNDLE_ID_SUFFIX = .stg
 BASE_URL = https:/$()/api-stg.example.com
 ASSOCIATED_DOMAIN = stg.example.com
+// Certificate pinning (§6l): base64 SHA-256 of the API host's public keys, primary and backup, space-separated.
+// Leave empty only until the backend team provides them: the app logs a fault and connects without pinning.
+PINNED_PUBLIC_KEY_HASHES =
 SWIFT_ACTIVE_COMPILATION_CONDITIONS = $(inherited) STAGING
