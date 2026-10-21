@@ -45,7 +45,7 @@ let package = Package(
         .target(name: "CatalogDomain", dependencies: ["SharedDomain"], path: "Sources/Features/Catalog/Domain"),
         .target(
             name: "CatalogData", dependencies: ["CatalogDomain", "SharedDomain", "Core"],
-            path: "Sources/Features/Catalog/Data"),
+            path: "Sources/Features/Catalog/Data", resources: [.process("Model/Local/Catalog.xcdatamodeld")]),
         // Tests
         .target(name: "TestSupport", dependencies: ["Core", "SharedDomain"], path: "Tests/TestSupport"),
         .testTarget(name: "LocalizationTests", dependencies: ["Localization"]),
