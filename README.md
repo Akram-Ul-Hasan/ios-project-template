@@ -121,3 +121,57 @@ Screen ─▶ ViewModel ─▶ UseCase ─▶ Repository (protocol, Domain)
   universal links and the URL scheme share one allowlisted parser.
 - **Security**: Keychain (`ThisDeviceOnly`), AES-GCM encrypted files, complete data protection, privacy screen,
   biometric re-lock, jailbreak/debugger signals, App Attest, privacy manifest.
+
+## Contributing
+
+### Branches
+
+| Branch | Purpose | From → into |
+|---|---|---|
+| `main` | what's in the App Store; every merge tagged `vX.Y.Z` | ← `release/*`, `hotfix/*` |
+| `dev` | integration, always builds | ← feature branches |
+| `feat/…` `fix/…` `refactor/…` `chore/…` `docs/…` `test/…` `ci/…` `perf/…` | one change each | `dev` → MR → `dev` |
+| `release/1.4.0` | stabilize + version bump | `dev` → MR → `main`, back-merge to `dev` |
+| `hotfix/1.4.1` | urgent production fix | `main` → MR → `main`, back-merge to `dev` |
+
+`dev` and `main` are protected: nobody pushes to them; maintainers merge MRs with a green pipeline and resolved
+threads (squash merge, so the MR title becomes the commit).
+
+### Workflow
+
+```sh
+git switch dev && git pull
+git switch -c feat/order-history
+# small commits, each a one-line Conventional Commit
+# run preflight (see CLAUDE.md)
+git push -u origin feat/order-history     # then open an MR into dev using the Default template
+```
+
+### Commit messages and MR titles
+
+One line, `type(scope)?: subject`, 3–72 characters, imperative and lowercase:
+`feat(cart): add quantity stepper`, `fix(image): cancel download when cell disappears`.
+Types: `feat` `fix` `refactor` `perf` `test` `docs` `style` `chore` `build` `ci` `revert`; `!` marks a breaking change.
+
+### What the hooks and CI enforce
+
+| Check | Local hook | CI |
+|---|---|---|
+| branch name, no commits/pushes to `dev`/`main` | pre-commit, pre-push | `lint:git` |
+| one-line Conventional Commits | commit-msg | `lint:git` (every commit + MR title) |
+| `swift format lint --strict` | pre-commit (staged files) | `lint:format` |
+| banned APIs | pre-commit | `lint:banned-api` |
+| target graph / declared imports | pre-commit (Package.swift) / pre-push | `lint:target-graph`, `lint:imports` |
+| secrets (`*.p12`, `*.secrets.xcconfig`, private keys) | pre-commit | — |
+| build all three schemes | pre-push (package) | `build` |
+| tests + coverage | — | `test` |
+
+Hooks are a fast first line (they can be bypassed); GitLab protected branches and the pipeline are the real gate.
+The pipeline needs a self-hosted macOS runner tagged `macos` with the Xcode from `.xcode-version`.
+
+### Before you open an MR
+
+- preflight passes; no new third-party dependency;
+- every new string is in every language; screens checked in `PreviewMatrix` (light/dark, large text, iPad);
+- no `Package.swift` edge outside the target graph; changes to `Package.swift`, `Core/Security` or `Core/Network`
+  need a senior reviewer (CODEOWNERS).
