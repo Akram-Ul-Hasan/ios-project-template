@@ -31,6 +31,21 @@ public struct SettingsScreen: View {
             } footer: {
                 AppTextButton(L10n.Common.openSettings, action: viewModel.openAppSettings)
             }
+            if viewModel.isDiagnosticsEnabled {
+                Section(L10n.Settings.diagnostics) {
+                    Button {
+                        Task { await viewModel.exportLogs() }
+                    } label: {
+                        LabeledContent(L10n.Settings.exportLogs) {
+                            if viewModel.isExportingLogs { ProgressView() }
+                        }
+                    }
+                    .disabled(viewModel.isExportingLogs)
+                    if let logs = viewModel.exportedLogs {
+                        ShareLink(item: logs) { Label(L10n.Settings.shareLogs, systemImage: "square.and.arrow.up") }
+                    }
+                }
+            }
             Section(L10n.Settings.account) {
                 Button(L10n.Account.logout, role: .destructive) {
                     viewModel.confirmLogout(

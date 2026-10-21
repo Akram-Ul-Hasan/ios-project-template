@@ -7,6 +7,7 @@ extension AppContainer {
     func makeSettingsViewModel() -> SettingsViewModel {
         SettingsViewModel(
             localization: localization, theme: theme, permissions: permissions, version: Self.appVersion,
+            isDiagnosticsEnabled: env.isDiagnosticsEnabled, feedback: feedback,
             onLogout: { [weak self] in Task { await self?.logout() } })
     }
 

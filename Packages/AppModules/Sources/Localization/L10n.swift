@@ -140,6 +140,9 @@ public enum L10n {
             tr("settings.version", version, build)
         }
         public static var permissions: String { tr("settings.permissions") }
+        public static var diagnostics: String { tr("settings.diagnostics") }
+        public static var exportLogs: String { tr("settings.export_logs") }
+        public static var shareLogs: String { tr("settings.share_logs") }
         public static var logoutConfirmTitle: String { tr("settings.logout_confirm_title") }
         public static var logoutConfirmMessage: String { tr("settings.logout_confirm_message") }
     }
