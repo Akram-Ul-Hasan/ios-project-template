@@ -46,6 +46,10 @@ final class AppContainer {
     let auth: AuthContainer
     let catalog: CatalogContainer
 
+    // Device integrity (§6l)
+    let securityPolicy: SecurityPolicy
+    var securityReport: SecurityReport?
+
     // Diagnostics and background work
     let metrics: MetricsCollector
     let refreshScheduler = AppRefreshScheduler()
@@ -54,6 +58,7 @@ final class AppContainer {
 
     init(env: Env) {
         self.env = env
+        securityPolicy = SecurityPolicy(environment: env.environment)
         router = AppRouter()
         deepLinks = DeepLinkHandler(router: router)
         preferences = UserDefaultsPreferencesStore()
