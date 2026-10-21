@@ -48,6 +48,8 @@ final class AppContainer {
 
     // Device integrity (§6l)
     let securityPolicy: SecurityPolicy
+    /// Used by features whose endpoints the backend protects with App Attest.
+    let appAttest: any AppAttesting
     var securityReport: SecurityReport?
 
     // Diagnostics and background work
@@ -64,6 +66,7 @@ final class AppContainer {
         preferences = UserDefaultsPreferencesStore()
         keychain = KeychainService(accessGroup: nil)
         tokenStore = SecureTokenStore(keychain: keychain)
+        appAttest = AppAttestService(keychain: keychain)
         Self.wipeKeychainOnFirstLaunch(preferences: preferences, keychain: keychain)
 
         // Every one of these is optional on purpose: a failure degrades a feature, it never crashes the app.
