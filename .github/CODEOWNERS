@@ -1,0 +1,18 @@
+# Changes here need a code-owner review once "Require review from Code Owners" is on in branch protection.
+# Replace @Akram-Ul-Hasan with the team that should own them, e.g. @technonext/ios-seniors.
+
+# Architecture
+/Packages/AppModules/Package.swift              @Akram-Ul-Hasan
+/scripts/check_target_graph.sh                  @Akram-Ul-Hasan
+/scripts/check_imports.sh                       @Akram-Ul-Hasan
+
+# Security
+/Packages/AppModules/Sources/Core/Security/     @Akram-Ul-Hasan
+/Packages/AppModules/Sources/Core/Network/      @Akram-Ul-Hasan
+/App/Resources/*.entitlements                   @Akram-Ul-Hasan
+/App/Resources/PrivacyInfo.xcprivacy            @Akram-Ul-Hasan
+
+# CI and hooks
+/.github/                                       @Akram-Ul-Hasan
+/scripts/git-hooks/                             @Akram-Ul-Hasan
+/scripts/ci/                                    @Akram-Ul-Hasan
