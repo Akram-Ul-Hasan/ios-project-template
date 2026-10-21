@@ -64,3 +64,60 @@ xcrun simctl push booted scripts/push/order.apns
 ```
 
 See `CLAUDE.md` for the full command list, rules and component catalog.
+
+## Architecture
+
+```
+ios-project-template/
+├── App/                  app target: DI containers, router + tabs, deep links, root flow, push (thin shell)
+├── AppTests/             app unit tests (router, deep links, fixtures)
+├── Config/               xcconfig per flavor
+├── Packages/AppModules/  all real code: one SPM target per layer per feature
+│   ├── Sources/Localization   strings (en, bn), L10n, active language
+│   ├── Sources/SharedDomain   UseCase, shared entities, validation rules
+│   ├── Sources/Core           env, networking, errors, storage, security, session, images, pagination, forms …
+│   ├── Sources/DesignSystem   tokens, theme, components
+│   └── Sources/Features/<F>/  Domain · Data · Presentation
+└── scripts/              hooks, checks, create_feature.sh, push payloads
+```
+
+### Target graph
+
+Every edge points down, so cycles are impossible, and Data and Presentation can never see each other:
+
+```
+L4  ProjectTemplate (app)     → everything
+L3  <F>Presentation           → <F>Domain, <G>Domain, DesignSystem, Core, SharedDomain, Localization
+L3  <F>Data                   → <F>Domain, Core, SharedDomain
+L2  DesignSystem              → Core, SharedDomain, Localization
+L2  <F>Domain                 → SharedDomain, <G>Domain
+L1  Core                      → SharedDomain, Localization
+L0  SharedDomain, Localization
+```
+
+Three layers of enforcement: Swift won't compile an import of a module that isn't built for the target;
+`scripts/check_imports.sh` rejects imports that aren't **declared** dependencies (SwiftPM would otherwise let an
+already-built module slip through); `scripts/check_target_graph.sh` rejects disallowed edges added to
+`Package.swift`. All three run in CI.
+
+### How a request flows
+
+```
+Screen ─▶ ViewModel ─▶ UseCase ─▶ Repository (protocol, Domain)
+                                     │
+                     RepositoryImpl (Data) ─▶ DataSourceFactory ─▶ Remote (HTTPClient) | Mock (fixtures) | Local (Core Data)
+                                     │
+                          DTO ─▶ mapper (validates) ─▶ Entity
+```
+
+- **DI** by hand: `AppContainer` creates shared infrastructure once; each feature container builds factory →
+  repository → use cases → view models. No service locator, so a missing dependency is a compile error.
+- **Networking**: `URLSessionHTTPClient` with an interceptor chain (log → auth token → Accept-Language → backend
+  error); single-flight token refresh on 401; certificate pinning in staging/production.
+- **Errors**: everything becomes a `ResponseError`; `ErrorPolicy` decides full screen / snackbar / inline / dialog /
+  logout / blocking screen; view models call `handle(_:context:)`.
+- **State**: `ViewState<T>` + `ViewStateContainer`; paged lists with `PaginatedViewModel` + `PaginatedList`.
+- **Navigation**: `AppRouter` (tab + one stack per tab + sheet); screens expose callbacks; deep links from push,
+  universal links and the URL scheme share one allowlisted parser.
+- **Security**: Keychain (`ThisDeviceOnly`), AES-GCM encrypted files, complete data protection, privacy screen,
+  biometric re-lock, jailbreak/debugger signals, App Attest, privacy manifest.
