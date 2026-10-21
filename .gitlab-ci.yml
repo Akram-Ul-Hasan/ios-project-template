@@ -42,6 +42,11 @@ lint:target-graph:
   script:
     - scripts/check_target_graph.sh
 
+lint:imports:
+  stage: lint
+  script:
+    - scripts/check_imports.sh
+
 lint:banned-api:
   stage: lint
   script:
