@@ -10,7 +10,10 @@ struct SettingsViewModelTests {
         let preferences = InMemoryPreferencesStore()
         return SettingsViewModel(
             localization: LocalizationManager(preferences: preferences, preferredLanguages: ["en"]),
-            theme: ThemeManager(preferences: preferences), version: ("1.0", "7"), onLogout: onLogout)
+            theme: ThemeManager(preferences: preferences),
+            permissions: FixedPermissionManager(
+                statuses: [.camera: .denied, .photos: .limited], afterRequest: .granted),
+            version: ("1.0", "7"), onLogout: onLogout)
     }
 
     @Test("Logout asks for confirmation first, then logs out on confirm")
@@ -22,5 +25,15 @@ struct SettingsViewModelTests {
         #expect(!loggedOut)
         model.logoutDialog?.primary.action()
         #expect(loggedOut)
+    }
+
+    @Test("Loads every permission's status")
+    func permissions() async {
+        let model = makeViewModel()
+        await model.loadPermissions()
+        #expect(model.permissionStatuses.count == AppPermission.allCases.count)
+        #expect(model.permissionStatuses[.camera] == .denied)
+        #expect(model.permissionStatuses[.photos] == .limited)
+        #expect(model.permissionStatuses[.contacts] == .notDetermined)
     }
 }

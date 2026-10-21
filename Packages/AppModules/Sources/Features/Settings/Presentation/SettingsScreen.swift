@@ -5,6 +5,7 @@ import SwiftUI
 
 public struct SettingsScreen: View {
     @State private var viewModel: SettingsViewModel
+    @Environment(\.scenePhase) private var scenePhase
 
     public init(viewModel: SettingsViewModel) {
         _viewModel = State(initialValue: viewModel)
@@ -15,6 +16,20 @@ public struct SettingsScreen: View {
             Section(L10n.Settings.appearance) {
                 LanguagePicker(manager: viewModel.localization)
                 ThemePicker(manager: viewModel.theme)
+            }
+            Section {
+                ForEach(AppPermission.allCases, id: \.self) { permission in
+                    LabeledContent {
+                        Text(viewModel.permissionStatuses[permission]?.title ?? "")
+                            .foregroundStyle(AppColors.textSecondary)
+                    } label: {
+                        Label(permission.title, systemImage: permission.systemImage)
+                    }
+                }
+            } header: {
+                Text(L10n.Settings.permissions)
+            } footer: {
+                AppTextButton(L10n.Common.openSettings, action: viewModel.openAppSettings)
             }
             Section(L10n.Settings.account) {
                 Button(L10n.Account.logout, role: .destructive) {
@@ -33,5 +48,9 @@ public struct SettingsScreen: View {
         .background(AppColors.background)
         .commonAppBar(L10n.Route.settings)
         .confirmDialog(item: $viewModel.logoutDialog)
+        .task { await viewModel.loadPermissions() }
+        .onChange(of: scenePhase) { _, phase in
+            if phase == .active { Task { await viewModel.loadPermissions() } }
+        }
     }
 }

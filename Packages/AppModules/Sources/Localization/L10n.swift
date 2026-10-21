@@ -100,6 +100,11 @@ public enum L10n {
         public static var notifications: String { tr("permission.notifications") }
         public static var contacts: String { tr("permission.contacts") }
         public static var tracking: String { tr("permission.tracking") }
+        public static var statusGranted: String { tr("permission.status.granted") }
+        public static var statusLimited: String { tr("permission.status.limited") }
+        public static var statusDenied: String { tr("permission.status.denied") }
+        public static var statusRestricted: String { tr("permission.status.restricted") }
+        public static var statusNotDetermined: String { tr("permission.status.not_determined") }
     }
 
     public enum Placeholder {
@@ -134,6 +139,7 @@ public enum L10n {
         public static func version(_ version: String, _ build: String) -> String {
             tr("settings.version", version, build)
         }
+        public static var permissions: String { tr("settings.permissions") }
         public static var logoutConfirmTitle: String { tr("settings.logout_confirm_title") }
         public static var logoutConfirmMessage: String { tr("settings.logout_confirm_message") }
     }

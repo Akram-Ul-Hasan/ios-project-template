@@ -6,7 +6,7 @@ import SharedDomain
 extension AppContainer {
     func makeSettingsViewModel() -> SettingsViewModel {
         SettingsViewModel(
-            localization: localization, theme: theme, version: Self.appVersion,
+            localization: localization, theme: theme, permissions: permissions, version: Self.appVersion,
             onLogout: { [weak self] in Task { await self?.logout() } })
     }
 
