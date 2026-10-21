@@ -72,6 +72,13 @@
         "identifier" : "CatalogDomainTests",
         "name" : "CatalogDomainTests"
       }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Packages\/AppModules",
+        "identifier" : "CatalogDataTests",
+        "name" : "CatalogDataTests"
+      }
     }
   ],
   "version" : 1
