@@ -22,6 +22,7 @@ let package = Package(
                 "AuthDomain", "AuthData", "AuthPresentation",
                 "CatalogDomain", "CatalogData", "CatalogPresentation",
                 "SettingsPresentation",
+                // create_feature: products
             ])
     ],
     targets: [
@@ -55,6 +56,7 @@ let package = Package(
         .target(
             name: "SettingsPresentation", dependencies: ["SharedDomain", "DesignSystem", "Core", "Localization"],
             path: "Sources/Features/Settings/Presentation"),
+        // create_feature: targets
         // Tests
         .target(name: "TestSupport", dependencies: ["Core", "SharedDomain"], path: "Tests/TestSupport"),
         .testTarget(name: "LocalizationTests", dependencies: ["Localization"]),
@@ -68,6 +70,7 @@ let package = Package(
         .testTarget(name: "CatalogPresentationTests", dependencies: ["CatalogPresentation", "TestSupport"]),
         .testTarget(name: "SettingsPresentationTests", dependencies: ["SettingsPresentation", "TestSupport"]),
         .testTarget(name: "CoreTests", dependencies: ["Core", "TestSupport"], resources: [.process("Resources/Mock")]),
+        // create_feature: tests
     ],
     swiftLanguageModes: [.v6]
 )
