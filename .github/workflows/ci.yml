@@ -1,0 +1,102 @@
+# Same checks as .gitlab-ci.yml: lint → build (all flavors) → test with coverage.
+# Runs on a macOS runner with the Xcode from .xcode-version. To use a self-hosted Mac, set the repository
+# variable MACOS_RUNNER (Settings → Secrets and variables → Actions → Variables) to its label, e.g. `self-hosted`.
+name: CI
+
+on:
+  pull_request:
+    branches: [dev, main]
+  push:
+    branches: [dev, main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  IOS_SIMULATOR: iPhone 17
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ${{ vars.MACOS_RUNNER || 'macos-latest' }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # commit-message lint needs history back to the PR base
+      - name: Select Xcode
+        run: scripts/ci/select_xcode.sh
+      - name: Branch name, PR title and commit messages
+        if: github.event_name == 'pull_request'
+        # Untrusted PR data goes through env, never straight into the script.
+        env:
+          BRANCH: ${{ github.head_ref }}
+          TITLE: ${{ github.event.pull_request.title }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: scripts/lint_git.sh "$BRANCH" "$TITLE" "$BASE_SHA"
+      - name: swift format
+        run: swift format lint --strict --recursive App AppTests Packages/AppModules
+      - name: Target graph
+        run: scripts/check_target_graph.sh
+      - name: Declared imports
+        run: scripts/check_imports.sh
+      - name: Banned APIs
+        run: scripts/banned_api_check.sh
+
+  build:
+    name: Build (${{ matrix.flavor }})
+    needs: lint
+    runs-on: ${{ vars.MACOS_RUNNER || 'macos-latest' }}
+    strategy:
+      fail-fast: false
+      matrix:
+        flavor: [Development, Staging, Production]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Select Xcode
+        run: scripts/ci/select_xcode.sh
+      - name: Build
+        run: >
+          xcodebuild build -quiet
+          -project ios-project-template.xcodeproj
+          -scheme "ProjectTemplate-${{ matrix.flavor }}"
+          -destination 'generic/platform=iOS Simulator'
+          -derivedDataPath .build/DerivedData
+          CODE_SIGNING_ALLOWED=NO
+
+  test:
+    name: Test
+    needs: lint
+    runs-on: ${{ vars.MACOS_RUNNER || 'macos-latest' }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Select Xcode
+        run: scripts/ci/select_xcode.sh
+      - name: Pick simulator
+        run: scripts/ci/pick_simulator.sh
+      - name: Test
+        run: |
+          rm -rf coverage && mkdir coverage
+          xcodebuild test -quiet \
+            -project ios-project-template.xcodeproj \
+            -scheme ProjectTemplate-Development \
+            -destination "platform=iOS Simulator,name=$IOS_SIMULATOR" \
+            -derivedDataPath .build/DerivedData \
+            -resultBundlePath coverage/Tests.xcresult \
+            -enableCodeCoverage YES \
+            -collect-test-diagnostics never \
+            CODE_SIGNING_ALLOWED=NO
+      - name: Coverage
+        if: always()
+        run: |
+          xcrun xccov view --report --json coverage/Tests.xcresult > coverage/coverage.json
+          jq -r '"Coverage: \(.lineCoverage * 10000 | round / 100)%"' coverage/coverage.json | tee -a "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: coverage
+          path: coverage/
+          retention-days: 14

@@ -134,8 +134,8 @@ Screen ─▶ ViewModel ─▶ UseCase ─▶ Repository (protocol, Domain)
 | `release/1.4.0` | stabilize + version bump | `dev` → MR → `main`, back-merge to `dev` |
 | `hotfix/1.4.1` | urgent production fix | `main` → MR → `main`, back-merge to `dev` |
 
-`dev` and `main` are protected: nobody pushes to them; maintainers merge MRs with a green pipeline and resolved
-threads (squash merge, so the MR title becomes the commit).
+`dev` and `main` are protected: nobody pushes to them; maintainers merge pull requests (MRs on GitLab) with a green
+pipeline and resolved conversations.
 
 ### Workflow
 
@@ -144,7 +144,7 @@ git switch dev && git pull
 git switch -c feat/order-history
 # small commits, each a one-line Conventional Commit
 # run preflight (see CLAUDE.md)
-git push -u origin feat/order-history     # then open an MR into dev using the Default template
+git push -u origin feat/order-history     # then open a PR into dev (the template fills in the checklist)
 ```
 
 ### Commit messages and MR titles
@@ -155,23 +155,34 @@ Types: `feat` `fix` `refactor` `perf` `test` `docs` `style` `chore` `build` `ci`
 
 ### What the hooks and CI enforce
 
-| Check | Local hook | CI |
-|---|---|---|
-| branch name, no commits/pushes to `dev`/`main` | pre-commit, pre-push | `lint:git` |
-| one-line Conventional Commits | commit-msg | `lint:git` (every commit + MR title) |
-| `swift format lint --strict` | pre-commit (staged files) | `lint:format` |
-| banned APIs | pre-commit | `lint:banned-api` |
-| target graph / declared imports | pre-commit (Package.swift) / pre-push | `lint:target-graph`, `lint:imports` |
-| secrets (`*.p12`, `*.secrets.xcconfig`, private keys) | pre-commit | — |
-| build all three schemes | pre-push (package) | `build` |
-| tests + coverage | — | `test` |
+| Check | Local hook | GitHub Actions (`.github/workflows/ci.yml`) | GitLab CI (`.gitlab-ci.yml`) |
+|---|---|---|---|
+| branch name, no commits/pushes to `dev`/`main` | pre-commit, pre-push | Lint | `lint:git` |
+| one-line Conventional Commits | commit-msg | Lint (every commit + PR title) | `lint:git` |
+| `swift format lint --strict` | pre-commit (staged files) | Lint | `lint:format` |
+| banned APIs | pre-commit | Lint | `lint:banned-api` |
+| target graph / declared imports | pre-commit (Package.swift) / pre-push | Lint | `lint:target-graph`, `lint:imports` |
+| secrets (`*.p12`, `*.secrets.xcconfig`, private keys) | pre-commit | — | — |
+| build all three schemes | pre-push (package) | Build (Development / Staging / Production) | `build` |
+| tests + coverage | — | Test (coverage artifact + job summary) | `test` |
 
-Hooks are a fast first line (they can be bypassed); GitLab protected branches and the pipeline are the real gate.
-The pipeline needs a self-hosted macOS runner tagged `macos` with the Xcode from `.xcode-version`.
+Hooks are a fast first line (they can be bypassed); branch protection and the pipeline are the real gate. Both
+pipelines need a macOS runner with the Xcode from `.xcode-version`: on GitHub, `macos-latest` by default, or a
+self-hosted Mac via the `MACOS_RUNNER` repository variable; on GitLab, a self-hosted runner tagged `macos`.
+
+### Branch protection (GitHub)
+
+Settings → Branches → add a rule (or ruleset) for **`dev`** and for **`main`**:
+
+- Require a pull request before merging (1 approval; dismiss stale approvals; require review from Code Owners).
+- Require status checks to pass, branches up to date: **Lint**, **Build (Development)**, **Build (Staging)**,
+  **Build (Production)**, **Test** (they appear in the list after the workflow has run once).
+- Require conversation resolution; block force pushes; restrict deletions.
+- Optionally allow only squash merges (Settings → General → Pull Requests) so the PR title becomes the commit.
 
 ### Before you open an MR
 
 - preflight passes; no new third-party dependency;
 - every new string is in every language; screens checked in `PreviewMatrix` (light/dark, large text, iPad);
 - no `Package.swift` edge outside the target graph; changes to `Package.swift`, `Core/Security` or `Core/Network`
-  need a senior reviewer (CODEOWNERS).
+  need a senior reviewer (`.github/CODEOWNERS`, `.gitlab/CODEOWNERS`).
