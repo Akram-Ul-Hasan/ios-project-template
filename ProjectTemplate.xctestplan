@@ -12,6 +12,13 @@
   "testTargets" : [
     {
       "target" : {
+        "containerPath" : "container:ios-project-template.xcodeproj",
+        "identifier" : "C2FF1300308631D7001D0C99",
+        "name" : "ProjectTemplateTests"
+      }
+    },
+    {
+      "target" : {
         "containerPath" : "container:Packages\/AppModules",
         "identifier" : "LocalizationTests",
         "name" : "LocalizationTests"
@@ -36,6 +43,55 @@
         "containerPath" : "container:Packages\/AppModules",
         "identifier" : "DesignSystemTests",
         "name" : "DesignSystemTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Packages\/AppModules",
+        "identifier" : "AuthDomainTests",
+        "name" : "AuthDomainTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Packages\/AppModules",
+        "identifier" : "AuthDataTests",
+        "name" : "AuthDataTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Packages\/AppModules",
+        "identifier" : "AuthPresentationTests",
+        "name" : "AuthPresentationTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Packages\/AppModules",
+        "identifier" : "CatalogDomainTests",
+        "name" : "CatalogDomainTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Packages\/AppModules",
+        "identifier" : "CatalogDataTests",
+        "name" : "CatalogDataTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Packages\/AppModules",
+        "identifier" : "CatalogPresentationTests",
+        "name" : "CatalogPresentationTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Packages\/AppModules",
+        "identifier" : "SettingsPresentationTests",
+        "name" : "SettingsPresentationTests"
       }
     }
   ],

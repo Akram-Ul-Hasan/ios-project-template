@@ -19,6 +19,9 @@ let package = Package(
             name: "AppModules",
             targets: [
                 "Localization", "SharedDomain", "Core", "DesignSystem",
+                "AuthDomain", "AuthData", "AuthPresentation",
+                "CatalogDomain", "CatalogData", "CatalogPresentation",
+                "SettingsPresentation",
             ])
     ],
     targets: [
@@ -31,12 +34,40 @@ let package = Package(
         .target(
             name: "DesignSystem", dependencies: ["Core", "SharedDomain", "Localization"],
             resources: [.process("Resources")]),
+        // Feature: Auth
+        .target(name: "AuthDomain", dependencies: ["SharedDomain"], path: "Sources/Features/Auth/Domain"),
+        .target(
+            name: "AuthData", dependencies: ["AuthDomain", "SharedDomain", "Core"], path: "Sources/Features/Auth/Data"),
+        .target(
+            name: "AuthPresentation",
+            dependencies: ["AuthDomain", "SharedDomain", "DesignSystem", "Core", "Localization"],
+            path: "Sources/Features/Auth/Presentation"),
+        // Feature: Catalog
+        .target(name: "CatalogDomain", dependencies: ["SharedDomain"], path: "Sources/Features/Catalog/Domain"),
+        .target(
+            name: "CatalogData", dependencies: ["CatalogDomain", "SharedDomain", "Core"],
+            path: "Sources/Features/Catalog/Data", resources: [.process("Model/Local/Catalog.xcdatamodeld")]),
+        .target(
+            name: "CatalogPresentation",
+            dependencies: ["CatalogDomain", "SharedDomain", "DesignSystem", "Core", "Localization"],
+            path: "Sources/Features/Catalog/Presentation"),
+        // Feature: Settings (presentation only: it works on Core's managers, no domain or data of its own)
+        .target(
+            name: "SettingsPresentation", dependencies: ["SharedDomain", "DesignSystem", "Core", "Localization"],
+            path: "Sources/Features/Settings/Presentation"),
         // Tests
         .target(name: "TestSupport", dependencies: ["Core", "SharedDomain"], path: "Tests/TestSupport"),
         .testTarget(name: "LocalizationTests", dependencies: ["Localization"]),
         .testTarget(name: "SharedDomainTests", dependencies: ["SharedDomain"]),
         .testTarget(name: "DesignSystemTests", dependencies: ["DesignSystem", "TestSupport"]),
-        .testTarget(name: "CoreTests", dependencies: ["Core", "TestSupport"], resources: [.copy("Resources/Mock")]),
+        .testTarget(name: "AuthDomainTests", dependencies: ["AuthDomain", "TestSupport"]),
+        .testTarget(name: "AuthDataTests", dependencies: ["AuthData", "TestSupport"]),
+        .testTarget(name: "AuthPresentationTests", dependencies: ["AuthPresentation", "TestSupport"]),
+        .testTarget(name: "CatalogDomainTests", dependencies: ["CatalogDomain", "TestSupport"]),
+        .testTarget(name: "CatalogDataTests", dependencies: ["CatalogData", "TestSupport"]),
+        .testTarget(name: "CatalogPresentationTests", dependencies: ["CatalogPresentation", "TestSupport"]),
+        .testTarget(name: "SettingsPresentationTests", dependencies: ["SettingsPresentation", "TestSupport"]),
+        .testTarget(name: "CoreTests", dependencies: ["Core", "TestSupport"], resources: [.process("Resources/Mock")]),
     ],
     swiftLanguageModes: [.v6]
 )

@@ -1,0 +1,11 @@
+{
+  "Simulator Target Bundle": "com.technonext.projecttemplate.dev",
+  "aps": {
+    "alert": {
+      "title": "You left something in your cart",
+      "body": "Complete your order before it sells out."
+    },
+    "sound": "default"
+  },
+  "deeplink": "projecttemplate://cart"
+}

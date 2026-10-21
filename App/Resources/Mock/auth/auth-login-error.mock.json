@@ -1,0 +1,7 @@
+{
+  "code": "INVALID_CREDENTIALS",
+  "message": "Wrong phone number or password.",
+  "errors": {
+    "password": ["Wrong phone number or password."]
+  }
+}

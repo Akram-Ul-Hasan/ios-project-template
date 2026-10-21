@@ -1,0 +1,378 @@
+[
+  {
+    "id": "p-001",
+    "name": "Miniket Rice 5 kg",
+    "price": 77,
+    "discount_price": null,
+    "image_url": "https://picsum.photos/seed/pt1/600",
+    "tags": null,
+    "status": "active"
+  },
+  {
+    "id": "p-002",
+    "name": "Chinigura Rice 1 kg",
+    "price": 114,
+    "discount_price": null,
+    "image_url": "https://picsum.photos/seed/pt2/600",
+    "tags": null,
+    "status": "active"
+  },
+  {
+    "id": "p-003",
+    "name": "Red Lentils 1 kg",
+    "price": 151,
+    "discount_price": null,
+    "image_url": "https://picsum.photos/seed/pt3/600",
+    "tags": null,
+    "status": "active"
+  },
+  {
+    "id": "p-004",
+    "name": "Mustard Oil 1 L",
+    "price": 188,
+    "discount_price": 165,
+    "image_url": "https://picsum.photos/seed/pt4/600",
+    "tags": null,
+    "status": "active"
+  },
+  {
+    "id": "p-005",
+    "name": "Soybean Oil 2 L",
+    "price": 225,
+    "discount_price": null,
+    "image_url": "https://picsum.photos/seed/pt5/600",
+    "tags": [
+      "popular"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "p-006",
+    "name": "Sugar 1 kg",
+    "price": 262,
+    "discount_price": null,
+    "image_url": "https://picsum.photos/seed/pt6/600",
+    "tags": null,
+    "status": "active"
+  },
+  {
+    "id": "p-007",
+    "name": "Iodized Salt 1 kg",
+    "price": 299,
+    "discount_price": null,
+    "image_url": "https://picsum.photos/seed/pt7/600",
+    "tags": null,
+    "status": "active"
+  },
+  {
+    "id": "p-008",
+    "name": "Atta 2 kg",
+    "price": 336,
+    "discount_price": 296,
+    "image_url": "https://picsum.photos/seed/pt8/600",
+    "tags": null,
+    "status": "active"
+  },
+  {
+    "id": "p-009",
+    "name": "Ghee 400 g",
+    "price": 373,
+    "discount_price": null,
+    "image_url": "https://picsum.photos/seed/pt9/600",
+    "tags": null,
+    "status": "out_of_stock"
+  },
+  {
+    "id": "p-010",
+    "name": "Turmeric Powder 200 g",
+    "price": 410,
+    "discount_price": null,
+    "image_url": "https://picsum.photos/seed/pt10/600",
+    "tags": [
+      "popular"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "p-011",
+    "name": "Chili Powder 200 g",
+    "price": 447,
+    "discount_price": null,
+    "image_url": "https://picsum.photos/seed/pt11/600",
+    "tags": null,
+    "status": "active"
+  },
+  {
+    "id": "p-012",
+    "name": "Cumin Seeds 100 g",
+    "price": 484,
+    "discount_price": 426,
+    "image_url": "https://picsum.photos/seed/pt12/600",
+    "tags": null,
+    "status": "active"
+  },
+  {
+    "id": "p-013",
+    "name": "Black Tea 400 g",
+    "price": 521,
+    "discount_price": null,
+    "image_url": "https://picsum.photos/seed/pt13/600",
+    "tags": null,
+    "status": "active"
+  },
+  {
+    "id": "p-014",
+    "name": "Instant Noodles 8-pack",
+    "price": 558,
+    "discount_price": null,
+    "image_url": "https://picsum.photos/seed/pt14/600",
+    "tags": null,
+    "status": "active"
+  },
+  {
+    "id": "p-015",
+    "name": "Milk Powder 500 g",
+    "price": 595,
+    "discount_price": null,
+    "image_url": "https://picsum.photos/seed/pt15/600",
+    "tags": [
+      "popular"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "p-016",
+    "name": "Fresh Milk 1 L",
+    "price": 632,
+    "discount_price": 556,
+    "image_url": "https://picsum.photos/seed/pt16/600",
+    "tags": null,
+    "status": "active"
+  },
+  {
+    "id": "p-017",
+    "name": "Eggs (12 pcs)",
+    "price": 669,
+    "discount_price": null,
+    "image_url": "https://picsum.photos/seed/pt17/600",
+    "tags": null,
+    "status": "active"
+  },
+  {
+    "id": "p-018",
+    "name": "Potatoes 1 kg",
+    "price": 706,
+    "discount_price": null,
+    "image_url": "https://picsum.photos/seed/pt18/600",
+    "tags": null,
+    "status": "out_of_stock"
+  },
+  {
+    "id": "p-019",
+    "name": "Onions 1 kg",
+    "price": 743,
+    "discount_price": null,
+    "image_url": "https://picsum.photos/seed/pt19/600",
+    "tags": null,
+    "status": "active"
+  },
+  {
+    "id": "p-020",
+    "name": "Garlic 500 g",
+    "price": 780,
+    "discount_price": 686,
+    "image_url": "https://picsum.photos/seed/pt20/600",
+    "tags": [
+      "popular"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "p-021",
+    "name": "Ginger 250 g",
+    "price": 817,
+    "discount_price": null,
+    "image_url": "https://picsum.photos/seed/pt21/600",
+    "tags": null,
+    "status": "active"
+  },
+  {
+    "id": "p-022",
+    "name": "Tomatoes 500 g",
+    "price": 854,
+    "discount_price": null,
+    "image_url": "https://picsum.photos/seed/pt22/600",
+    "tags": null,
+    "status": "active"
+  },
+  {
+    "id": "p-023",
+    "name": "Green Chili 250 g",
+    "price": 891,
+    "discount_price": null,
+    "image_url": "https://picsum.photos/seed/pt23/600",
+    "tags": null,
+    "status": "active"
+  },
+  {
+    "id": "p-024",
+    "name": "Bananas (12 pcs)",
+    "price": 928,
+    "discount_price": 817,
+    "image_url": "https://picsum.photos/seed/pt24/600",
+    "tags": null,
+    "status": "active"
+  },
+  {
+    "id": "p-025",
+    "name": "Mangoes 1 kg",
+    "price": 65,
+    "discount_price": null,
+    "image_url": "https://picsum.photos/seed/pt25/600",
+    "tags": [
+      "popular"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "p-026",
+    "name": "Hilsa Fish 1 kg",
+    "price": 102,
+    "discount_price": null,
+    "image_url": "https://picsum.photos/seed/pt26/600",
+    "tags": null,
+    "status": "active"
+  },
+  {
+    "id": "p-027",
+    "name": "Rui Fish 1 kg",
+    "price": 139,
+    "discount_price": null,
+    "image_url": "https://picsum.photos/seed/pt27/600",
+    "tags": null,
+    "status": "out_of_stock"
+  },
+  {
+    "id": "p-028",
+    "name": "Chicken Broiler 1 kg",
+    "price": 176,
+    "discount_price": 155,
+    "image_url": "https://picsum.photos/seed/pt28/600",
+    "tags": null,
+    "status": "active"
+  },
+  {
+    "id": "p-029",
+    "name": "Beef 1 kg",
+    "price": 213,
+    "discount_price": null,
+    "image_url": "https://picsum.photos/seed/pt29/600",
+    "tags": null,
+    "status": "active"
+  },
+  {
+    "id": "p-030",
+    "name": "Yogurt 500 g",
+    "price": 250,
+    "discount_price": null,
+    "image_url": "https://picsum.photos/seed/pt30/600",
+    "tags": [
+      "popular"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "p-031",
+    "name": "Biscuits Family Pack",
+    "price": 287,
+    "discount_price": null,
+    "image_url": "https://picsum.photos/seed/pt31/600",
+    "tags": null,
+    "status": "active"
+  },
+  {
+    "id": "p-032",
+    "name": "Chanachur 350 g",
+    "price": 324,
+    "discount_price": 285,
+    "image_url": "https://picsum.photos/seed/pt32/600",
+    "tags": null,
+    "status": "active"
+  },
+  {
+    "id": "p-033",
+    "name": "Toothpaste 200 g",
+    "price": 361,
+    "discount_price": null,
+    "image_url": "https://picsum.photos/seed/pt33/600",
+    "tags": null,
+    "status": "active"
+  },
+  {
+    "id": "p-034",
+    "name": "Bath Soap 3-pack",
+    "price": 398,
+    "discount_price": null,
+    "image_url": "https://picsum.photos/seed/pt34/600",
+    "tags": null,
+    "status": "active"
+  },
+  {
+    "id": "p-035",
+    "name": "Laundry Detergent 1 kg",
+    "price": 435,
+    "discount_price": null,
+    "image_url": "https://picsum.photos/seed/pt35/600",
+    "tags": [
+      "popular"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "p-036",
+    "name": "Dishwashing Liquid 500 ml",
+    "price": 472,
+    "discount_price": 415,
+    "image_url": "https://picsum.photos/seed/pt36/600",
+    "tags": null,
+    "status": "out_of_stock"
+  },
+  {
+    "id": "p-037",
+    "name": "Shampoo 340 ml",
+    "price": 509,
+    "discount_price": null,
+    "image_url": "https://picsum.photos/seed/pt37/600",
+    "tags": null,
+    "status": "active"
+  },
+  {
+    "id": "p-038",
+    "name": "Hand Wash 250 ml",
+    "price": 546,
+    "discount_price": null,
+    "image_url": "https://picsum.photos/seed/pt38/600",
+    "tags": null,
+    "status": "active"
+  },
+  {
+    "id": "p-039",
+    "name": "Tissue Box",
+    "price": 583,
+    "discount_price": null,
+    "image_url": "https://picsum.photos/seed/pt39/600",
+    "tags": null,
+    "status": "active"
+  },
+  {
+    "id": "p-040",
+    "name": "Mineral Water 1.5 L",
+    "price": 620,
+    "discount_price": 546,
+    "image_url": "https://picsum.photos/seed/pt40/600",
+    "tags": [
+      "popular"
+    ],
+    "status": "pre_order"
+  }
+]

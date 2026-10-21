@@ -16,23 +16,23 @@ struct MockDataHelperTests {
 
     private let mock = MockDataHelper(bundle: .module, latency: .zero)
 
-    @Test("Loads a fixture from Mock/<feature>/<name>.json")
+    @Test("Loads <feature>-<name>.mock.json")
     func load() async throws {
-        let items: [Item] = try await mock.load("catalog/items")
+        let items: [Item] = try await mock.load("catalog-items")
         #expect(items.map(\.id) == [1, 2, 3, 4, 5])
     }
 
     @Test("A fixture that breaks the DTO fails like a real response")
     func broken() async {
         await #expect(throws: ResponseError.invalidResponse(detail: "expected String at name")) {
-            let _: Named = try await mock.load("catalog/broken")
+            let _: Named = try await mock.load("catalog-broken")
         }
     }
 
     @Test("A missing fixture throws")
     func missing() async {
-        await #expect(throws: ResponseError.invalidResponse(detail: "missing fixture catalog/nope")) {
-            let _: [Item] = try await mock.load("catalog/nope")
+        await #expect(throws: ResponseError.invalidResponse(detail: "missing fixture catalog-nope")) {
+            let _: [Item] = try await mock.load("catalog-nope")
         }
     }
 

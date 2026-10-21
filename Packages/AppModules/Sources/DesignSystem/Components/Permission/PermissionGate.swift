@@ -108,7 +108,7 @@ public struct PermissionRationaleCard: View {
 }
 
 extension AppPermission {
-    var systemImage: String {
+    public var systemImage: String {
         switch self {
         case .notifications: "bell.badge"
         case .locationWhenInUse: "location"
@@ -120,7 +120,7 @@ extension AppPermission {
         }
     }
 
-    var title: String {
+    public var title: String {
         switch self {
         case .notifications: L10n.Permission.notifications
         case .locationWhenInUse: L10n.Permission.location
@@ -129,6 +129,18 @@ extension AppPermission {
         case .photos: L10n.Permission.photos
         case .contacts: L10n.Permission.contacts
         case .tracking: L10n.Permission.tracking
+        }
+    }
+}
+
+extension PermissionStatus {
+    public var title: String {
+        switch self {
+        case .granted: L10n.Permission.statusGranted
+        case .limited: L10n.Permission.statusLimited
+        case .denied: L10n.Permission.statusDenied
+        case .restricted: L10n.Permission.statusRestricted
+        case .notDetermined: L10n.Permission.statusNotDetermined
         }
     }
 }

@@ -1,0 +1,11 @@
+{
+  "Simulator Target Bundle": "com.technonext.projecttemplate.dev",
+  "aps": {
+    "alert": {
+      "title": "Your order is on the way",
+      "body": "Order A-1024 will arrive today."
+    },
+    "sound": "default"
+  },
+  "deeplink": "projecttemplate://order/A-1024"
+}

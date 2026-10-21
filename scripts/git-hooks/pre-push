@@ -13,3 +13,4 @@ root=$(git rev-parse --show-toplevel)
 [ -f "$root/Packages/AppModules/Package.swift" ] || exit 0
 echo "▸ Building AppModules…"
 "$root/scripts/build_package.sh" || { echo "✖ AppModules does not build"; exit 1; }
+"$root/scripts/check_imports.sh" >/dev/null || { echo "✖ An import doesn't match Package.swift dependencies (run scripts/check_imports.sh)"; exit 1; }

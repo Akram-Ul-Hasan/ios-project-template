@@ -35,12 +35,17 @@ lint:git:
 lint:format:
   stage: lint
   script:
-    - swift format lint --strict --recursive App Packages/AppModules
+    - swift format lint --strict --recursive App AppTests Packages/AppModules
 
 lint:target-graph:
   stage: lint
   script:
     - scripts/check_target_graph.sh
+
+lint:imports:
+  stage: lint
+  script:
+    - scripts/check_imports.sh
 
 lint:banned-api:
   stage: lint

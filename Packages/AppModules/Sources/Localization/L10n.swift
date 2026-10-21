@@ -3,6 +3,25 @@ import Foundation
 /// Type-safe access to `Localizable.xcstrings`. Every user-facing string goes through here (rule 18).
 /// Add a key to the catalog in every language first, then its accessor below.
 public enum L10n {
+    public enum Account {
+        public static var logout: String { tr("account.logout") }
+    }
+
+    public enum Blocking {
+        public static var maintenanceTitle: String { tr("blocking.maintenance_title") }
+        public static var updateTitle: String { tr("blocking.update_title") }
+        public static var updateAction: String { tr("blocking.update_action") }
+    }
+
+    public enum Catalog {
+        public static var title: String { tr("catalog.title") }
+        public static var searchPlaceholder: String { tr("catalog.search_placeholder") }
+        public static var noResults: String { tr("catalog.no_results") }
+        public static var noResultsMessage: String { tr("catalog.no_results_message") }
+        public static var inStock: String { tr("catalog.in_stock") }
+        public static var description: String { tr("catalog.description") }
+    }
+
     public enum Common {
         public static var ok: String { tr("common.ok") }
         public static var cancel: String { tr("common.cancel") }
@@ -40,9 +59,29 @@ public enum L10n {
         public static var verificationCode: String { tr("input.verification_code") }
     }
 
+    public enum Lock {
+        public static var title: String { tr("lock.title") }
+        public static var unlock: String { tr("lock.unlock") }
+    }
+
+    public enum Login {
+        public static var title: String { tr("login.title") }
+        public static var subtitle: String { tr("login.subtitle") }
+        public static var phone: String { tr("login.phone") }
+        public static var phonePlaceholder: String { tr("login.phone_placeholder") }
+        public static var password: String { tr("login.password") }
+        public static var submit: String { tr("login.submit") }
+    }
+
     public enum Offline {
         public static var banner: String { tr("offline.banner") }
         public static var backOnline: String { tr("offline.back_online") }
+    }
+
+    public enum Onboarding {
+        public static var title: String { tr("onboarding.title") }
+        public static var message: String { tr("onboarding.message") }
+        public static var getStarted: String { tr("onboarding.get_started") }
     }
 
     public enum Pagination {
@@ -61,11 +100,27 @@ public enum L10n {
         public static var notifications: String { tr("permission.notifications") }
         public static var contacts: String { tr("permission.contacts") }
         public static var tracking: String { tr("permission.tracking") }
+        public static var statusGranted: String { tr("permission.status.granted") }
+        public static var statusLimited: String { tr("permission.status.limited") }
+        public static var statusDenied: String { tr("permission.status.denied") }
+        public static var statusRestricted: String { tr("permission.status.restricted") }
+        public static var statusNotDetermined: String { tr("permission.status.not_determined") }
+    }
+
+    public enum Placeholder {
+        public static var message: String { tr("placeholder.message") }
     }
 
     public enum Product {
         public static var outOfStock: String { tr("product.out_of_stock") }
         public static var addToCart: String { tr("product.add_to_cart") }
+    }
+
+    public enum Route {
+        public static var productDetails: String { tr("route.product_details") }
+        public static var orders: String { tr("route.orders") }
+        public static var orderDetails: String { tr("route.order_details") }
+        public static var settings: String { tr("route.settings") }
     }
 
     public enum Section {
@@ -76,10 +131,38 @@ public enum L10n {
         public static var unlockReason: String { tr("session.unlock_reason") }
     }
 
+    public enum Settings {
+        public static var appearance: String { tr("settings.appearance") }
+        public static var language: String { tr("settings.language") }
+        public static var theme: String { tr("settings.theme") }
+        public static var account: String { tr("settings.account") }
+        public static func version(_ version: String, _ build: String) -> String {
+            tr("settings.version", version, build)
+        }
+        public static var permissions: String { tr("settings.permissions") }
+        public static var diagnostics: String { tr("settings.diagnostics") }
+        public static var exportLogs: String { tr("settings.export_logs") }
+        public static var shareLogs: String { tr("settings.share_logs") }
+        public static var logoutConfirmTitle: String { tr("settings.logout_confirm_title") }
+        public static var logoutConfirmMessage: String { tr("settings.logout_confirm_message") }
+    }
+
+    public enum Sheet {
+        public static var filter: String { tr("sheet.filter") }
+        public static var deliveryArea: String { tr("sheet.delivery_area") }
+    }
+
     public enum State {
         public static var emptyTitle: String { tr("state.empty_title") }
         public static var loading: String { tr("state.loading") }
         public static var offlineTitle: String { tr("state.offline_title") }
+    }
+
+    public enum Tab {
+        public static var home: String { tr("tab.home") }
+        public static var categories: String { tr("tab.categories") }
+        public static var cart: String { tr("tab.cart") }
+        public static var account: String { tr("tab.account") }
     }
 
     public enum Theme {

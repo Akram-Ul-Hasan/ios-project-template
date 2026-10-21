@@ -1,8 +1,11 @@
 import Foundation
 import SharedDomain
 
-/// Backs the mock data sources used by the development flavor (§5): loads JSON fixtures from
-/// `App/Resources/Mock` with the same decoder and DTOs as the remote path, and pages through them.
+/// Backs the mock data sources used by the development flavor (§5): loads JSON fixtures with the same decoder
+/// and DTOs as the remote path, and pages through them.
+///
+/// Fixtures live in `App/Resources/Mock/<feature>/` and are named `<feature>-<name>.mock.json`: Xcode copies them
+/// flat into the bundle (so names must be unique) and every non-development build excludes `*.mock.json`.
 public struct MockDataHelper: Sendable {
     private let bundle: Bundle
     private let latency: Duration
@@ -12,7 +15,7 @@ public struct MockDataHelper: Sendable {
         self.latency = latency
     }
 
-    /// `try await mock.load("auth/login")` decodes `Mock/auth/login.json`.
+    /// `try await mock.load("auth-login")` decodes `auth-login.mock.json`.
     public func load<Response: Decodable & Sendable>(
         _ fixture: String,
         as type: Response.Type = Response.self
@@ -41,11 +44,6 @@ public struct MockDataHelper: Sendable {
     }
 
     func url(for fixture: String) -> URL? {
-        let parts = fixture.split(separator: "/").map(String.init)
-        guard let name = parts.last else { return nil }
-        let folder = (["Mock"] + parts.dropLast()).joined(separator: "/")
-        // Folder reference first; fall back to a flattened copy at the bundle root.
-        return bundle.url(forResource: name, withExtension: "json", subdirectory: folder)
-            ?? bundle.url(forResource: name, withExtension: "json")
+        bundle.url(forResource: "\(fixture).mock", withExtension: "json")
     }
 }

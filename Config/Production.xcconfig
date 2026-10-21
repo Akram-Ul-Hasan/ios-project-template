@@ -4,4 +4,5 @@ APP_ENV = production
 APP_DISPLAY_NAME = ProjectTemplate
 BUNDLE_ID_SUFFIX =
 BASE_URL = https:/$()/api.example.com
+ASSOCIATED_DOMAIN = example.com
 SWIFT_ACTIVE_COMPILATION_CONDITIONS = $(inherited) PRODUCTION

@@ -33,5 +33,17 @@
 	<string>This lets us show you more relevant offers.</string>
 	<key>NSFaceIDUsageDescription</key>
 	<string>Face ID keeps your account locked when you leave the app.</string>
+	<!-- Custom URL scheme: must match DeepLinkConstants.urlScheme. -->
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>projecttemplate</string>
+			</array>
+		</dict>
+	</array>
 </dict>
 </plist>
