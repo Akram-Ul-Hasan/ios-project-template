@@ -4,10 +4,13 @@ import Foundation
 public struct Env: Sendable, Equatable {
     public let environment: AppEnvironment
     public let baseURL: URL
+    /// SPKI SHA-256 pins (base64) for `baseURL`'s host. Empty = no pinning (development).
+    public let pinnedKeyHashes: Set<String>
 
-    public init(environment: AppEnvironment, baseURL: URL) {
+    public init(environment: AppEnvironment, baseURL: URL, pinnedKeyHashes: Set<String>) {
         self.environment = environment
         self.baseURL = baseURL
+        self.pinnedKeyHashes = pinnedKeyHashes
     }
 
     /// Reads `APP_ENV` and `BASE_URL` from an Info.plist dictionary.
@@ -22,7 +25,11 @@ public struct Env: Sendable, Equatable {
         guard let baseURL = URL(string: rawURL), baseURL.scheme == "https", baseURL.host() != nil else {
             throw .invalid(Key.baseURL, rawURL)
         }
-        self.init(environment: environment, baseURL: baseURL)
+        // Optional; space- or comma-separated.
+        let pins = (infoDictionary[Key.pins] as? String ?? "")
+            .split { $0 == " " || $0 == "," }
+            .map(String.init)
+        self.init(environment: environment, baseURL: baseURL, pinnedKeyHashes: Set(pins))
     }
 
     /// The running app's values. Throws only when the build configuration is broken.
@@ -36,6 +43,7 @@ public struct Env: Sendable, Equatable {
     private enum Key {
         static let environment = "APP_ENV"
         static let baseURL = "BASE_URL"
+        static let pins = "PINNED_PUBLIC_KEY_HASHES"
     }
 }
 
