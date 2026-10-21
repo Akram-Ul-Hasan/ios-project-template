@@ -126,6 +126,18 @@ public enum L10n {
         public static var unlockReason: String { tr("session.unlock_reason") }
     }
 
+    public enum Settings {
+        public static var appearance: String { tr("settings.appearance") }
+        public static var language: String { tr("settings.language") }
+        public static var theme: String { tr("settings.theme") }
+        public static var account: String { tr("settings.account") }
+        public static func version(_ version: String, _ build: String) -> String {
+            tr("settings.version", version, build)
+        }
+        public static var logoutConfirmTitle: String { tr("settings.logout_confirm_title") }
+        public static var logoutConfirmMessage: String { tr("settings.logout_confirm_message") }
+    }
+
     public enum Sheet {
         public static var filter: String { tr("sheet.filter") }
         public static var deliveryArea: String { tr("sheet.delivery_area") }

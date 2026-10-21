@@ -1,6 +1,7 @@
 import CatalogPresentation
 import DesignSystem
 import Localization
+import SettingsPresentation
 import SwiftUI
 
 /// The only place that maps routes to screens. Feature screens get their view models from the containers
@@ -18,7 +19,7 @@ struct RouteView: View {
         case .orderDetails(let id):
             RoutePlaceholder(title: L10n.Route.orderDetails, detail: id)
         case .settings:
-            RoutePlaceholder(title: L10n.Route.settings, detail: nil)
+            SettingsScreen(viewModel: container.makeSettingsViewModel())
         }
     }
 }

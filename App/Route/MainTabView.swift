@@ -1,7 +1,5 @@
 import CatalogPresentation
-import Core
 import DesignSystem
-import SharedDomain
 import SwiftUI
 
 /// The signed-in shell: native tab bar, one `NavigationStack` per tab so each keeps its history (§6b).
@@ -33,15 +31,7 @@ struct MainTabView: View {
             ProductListScreen(
                 viewModel: container.catalog.makeProductListViewModel { router.push(.productDetails(id: $0)) })
         case .categories, .cart, .account:
-            TabRootPlaceholder(tab: tab, router: router, onLogout: logout)
-        }
-    }
-
-    /// Revokes the session on the backend (best effort), then wipes local data; RootView shows login.
-    private func logout() {
-        Task {
-            try? await container.auth.logoutUseCase()
-            await container.sessionManager.logout()
+            TabRootPlaceholder(tab: tab, router: router)
         }
     }
 

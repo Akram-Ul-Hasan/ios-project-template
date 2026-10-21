@@ -86,6 +86,13 @@
         "identifier" : "CatalogPresentationTests",
         "name" : "CatalogPresentationTests"
       }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Packages\/AppModules",
+        "identifier" : "SettingsPresentationTests",
+        "name" : "SettingsPresentationTests"
+      }
     }
   ],
   "version" : 1

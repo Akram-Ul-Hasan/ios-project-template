@@ -21,6 +21,7 @@ let package = Package(
                 "Localization", "SharedDomain", "Core", "DesignSystem",
                 "AuthDomain", "AuthData", "AuthPresentation",
                 "CatalogDomain", "CatalogData", "CatalogPresentation",
+                "SettingsPresentation",
             ])
     ],
     targets: [
@@ -50,6 +51,10 @@ let package = Package(
             name: "CatalogPresentation",
             dependencies: ["CatalogDomain", "SharedDomain", "DesignSystem", "Core", "Localization"],
             path: "Sources/Features/Catalog/Presentation"),
+        // Feature: Settings (presentation only: it works on Core's managers, no domain or data of its own)
+        .target(
+            name: "SettingsPresentation", dependencies: ["SharedDomain", "DesignSystem", "Core", "Localization"],
+            path: "Sources/Features/Settings/Presentation"),
         // Tests
         .target(name: "TestSupport", dependencies: ["Core", "SharedDomain"], path: "Tests/TestSupport"),
         .testTarget(name: "LocalizationTests", dependencies: ["Localization"]),
@@ -61,6 +66,7 @@ let package = Package(
         .testTarget(name: "CatalogDomainTests", dependencies: ["CatalogDomain", "TestSupport"]),
         .testTarget(name: "CatalogDataTests", dependencies: ["CatalogData", "TestSupport"]),
         .testTarget(name: "CatalogPresentationTests", dependencies: ["CatalogPresentation", "TestSupport"]),
+        .testTarget(name: "SettingsPresentationTests", dependencies: ["SettingsPresentation", "TestSupport"]),
         .testTarget(name: "CoreTests", dependencies: ["Core", "TestSupport"], resources: [.process("Resources/Mock")]),
     ],
     swiftLanguageModes: [.v6]
