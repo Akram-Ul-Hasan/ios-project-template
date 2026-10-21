@@ -52,4 +52,23 @@ struct CatalogViewModelTests {
         model.select(FakeCatalogRepository.product(7))
         #expect(tapped == "p7")
     }
+
+    @Test("Details: success, first-load failure, and a refresh that keeps data")
+    func details() async {
+        let repository = FakeCatalogRepository(total: 1)
+        let model = ProductDetailsViewModel(
+            productID: "p1", getDetails: GetProductDetailsUseCase(repository: repository), errorHandler: errorHandler)
+        await model.load()
+        #expect(model.state.value?.stock == 3)
+
+        repository.failure.withLock { $0 = .timeout }
+        await model.refresh()
+        #expect(model.state.value?.stock == 3)
+        #expect(feedback.messages.count == 1)
+
+        let failing = ProductDetailsViewModel(
+            productID: "p1", getDetails: GetProductDetailsUseCase(repository: repository), errorHandler: errorHandler)
+        await failing.load()
+        #expect(failing.state == .failure(.timeout))
+    }
 }
