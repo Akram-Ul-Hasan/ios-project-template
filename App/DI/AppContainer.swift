@@ -1,4 +1,5 @@
 import AuthDomain
+import CatalogData
 import Core
 import DesignSystem
 import Foundation
@@ -43,6 +44,7 @@ final class AppContainer {
 
     // Features
     let auth: AuthContainer
+    let catalog: CatalogContainer
 
     // Diagnostics and background work
     let metrics: MetricsCollector
@@ -62,7 +64,9 @@ final class AppContainer {
         // Every one of these is optional on purpose: a failure degrades a feature, it never crashes the app.
         encryptedFiles = Self.makeEncryptedFileStore(keychain: keychain)
         imagePipeline = try? ImagePipeline.makeDefault()
-        persistence = PersistenceController(name: "ProjectTemplate", models: [], location: .onDisk)
+        // Each feature with a cache contributes its model; they are merged into one store (§6a).
+        persistence = PersistenceController(
+            name: "ProjectTemplate", models: [CatalogDataModel.load()].compactMap { $0 }, location: .onDisk)
 
         let refresher = TokenRefresher(store: tokenStore, events: sessionEvents) { [tokenRefreshBridge] token in
             try await tokenRefreshBridge.refresh(token)
@@ -95,6 +99,9 @@ final class AppContainer {
         auth = AuthContainer(
             env: env, unauthenticatedClient: unauthenticatedClient, authenticatedClient: authenticatedClient,
             tokenStore: tokenStore, mockData: mockData, errorHandler: errorHandler, network: networkMonitor)
+        catalog = CatalogContainer(
+            env: env, client: authenticatedClient, mockData: mockData, persistence: persistence,
+            errorHandler: errorHandler)
         let refreshSession = auth.refreshSessionUseCase
         tokenRefreshBridge.setHandler { refreshToken in
             let tokens = try await refreshSession(refreshToken)

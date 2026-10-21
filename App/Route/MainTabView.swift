@@ -1,3 +1,4 @@
+import CatalogPresentation
 import Core
 import DesignSystem
 import SharedDomain
@@ -13,7 +14,7 @@ struct MainTabView: View {
         TabView(selection: selection) {
             ForEach(AppTab.allCases) { tab in
                 NavigationStack(path: path(for: tab)) {
-                    TabRootPlaceholder(tab: tab, router: router, onLogout: logout)
+                    root(for: tab)
                         .navigationDestination(for: Route.self) { RouteView(route: $0, container: container) }
                 }
                 .tabItem { Label(tab.title, systemImage: tab.systemImage) }
@@ -22,6 +23,18 @@ struct MainTabView: View {
         }
         .tint(AppColors.brandPrimary)
         .appSheet(item: $router.sheet) { SheetRouteView(sheet: $0, router: router) }
+    }
+
+    /// Each tab's first screen. Tabs without a feature yet show a placeholder.
+    @ViewBuilder
+    private func root(for tab: AppTab) -> some View {
+        switch tab {
+        case .home:
+            ProductListScreen(
+                viewModel: container.catalog.makeProductListViewModel { router.push(.productDetails(id: $0)) })
+        case .categories, .cart, .account:
+            TabRootPlaceholder(tab: tab, router: router, onLogout: logout)
+        }
     }
 
     /// Revokes the session on the backend (best effort), then wipes local data; RootView shows login.

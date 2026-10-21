@@ -12,14 +12,13 @@ struct TabRootPlaceholder: View {
         VStack(spacing: AppSpacing.s16) {
             EmptyStateView(systemImage: tab.systemImage, title: tab.title, message: L10n.Placeholder.message)
             switch tab {
-            case .home:
-                SecondaryButton(L10n.Route.productDetails) { router.push(.productDetails(id: "1")) }
+            case .categories:
                 SecondaryButton(L10n.Sheet.filter) { router.present(.filter) }
             case .account:
                 SecondaryButton(L10n.Route.orders) { router.push(.orders) }
                 SecondaryButton(L10n.Route.settings) { router.push(.settings) }
                 AppTextButton(L10n.Account.logout, action: onLogout)
-            case .categories, .cart:
+            case .home, .cart:
                 EmptyView()
             }
         }

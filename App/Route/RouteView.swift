@@ -1,3 +1,4 @@
+import CatalogPresentation
 import DesignSystem
 import Localization
 import SwiftUI
@@ -11,7 +12,7 @@ struct RouteView: View {
     var body: some View {
         switch route {
         case .productDetails(let id):
-            RoutePlaceholder(title: L10n.Route.productDetails, detail: id)
+            ProductDetailsScreen(viewModel: container.catalog.makeProductDetailsViewModel(id: id))
         case .orders:
             RoutePlaceholder(title: L10n.Route.orders, detail: nil)
         case .orderDetails(let id):
