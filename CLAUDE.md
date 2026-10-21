@@ -172,8 +172,9 @@ Never: tokens/PII in UserDefaults, logs or plain Core Data. Logout runs `Session
 
 ## Git
 
-- `main` = App Store, `dev` = integration; both protected. Work on `feat/…` etc., MR into `dev`, squash merge.
+- `main` = App Store, `dev` = integration; both protected. Work on `feat/…` etc., PR into `dev` (MR on GitLab).
 - One-line Conventional Commits (`commit-msg` hook), branch-name regex (`pre-commit`), no pushes to `dev`/`main`
   (`pre-push`). Hooks are installed by `./setup.sh`; CI enforces the same rules.
-- MR template: `.gitlab/merge_request_templates/Default.md`. `Package.swift`, `Core/Security`, `Core/Network` need a
-  senior reviewer (CODEOWNERS).
+- CI: GitHub Actions (`.github/workflows/ci.yml`, jobs Lint / Build / Test) and GitLab CI (`.gitlab-ci.yml`) run the
+  same checks. PR/MR templates: `.github/pull_request_template.md`, `.gitlab/merge_request_templates/Default.md`.
+  `Package.swift`, `Core/Security`, `Core/Network` need a senior reviewer (CODEOWNERS).
